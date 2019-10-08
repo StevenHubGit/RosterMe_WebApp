@@ -1,0 +1,56 @@
+﻿@page
+@model IndexModel
+@{
+    <!-- ViewData["Title"] = "RosterMe - Login"; -->
+}
+
+<html>
+    <head>
+        <!-- Login CSS file -->
+        <link rel="stylesheet" href="" type="text/css" />
+    </head>
+</html>
+
+<!-- Login content -->
+<div class="loginContainer">
+    <h1 class="welcomingTitle">
+        Welcome user !
+        Please login to access your session
+    </h1>
+</div>
+<div>
+    <!-- Table to store titles & inputs -->
+    <table align="center" class="loginInputTable">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>
+                <label class="loginUsernameLabel"> Username </label>
+            </td>
+            <td>
+                <input name="loginUsername_Input" type="text"
+                       class="loginUsernameInput" placeholder="Enter username..." />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label class="loginPasswordLabel"> Password </label>
+            </td>
+            <td>
+                <input name="loginPassword_Input" type="password"
+                       class="loginPasswordInput" placeholder="Enter password..." />
+            </td>
+        </tr>
+    </table>
+
+    <!-- Login Button & options -->
+    <p class="loginOptions">
+        <input type="button" class="loginButton" name="login_Button" value="Login" poster="Dashboard.cshtml"/>
+        <br />
+        <a>I forgot my password</a>
+        <br />
+        I don't have an account, <a>register now</a>
+    </p>
+</div>

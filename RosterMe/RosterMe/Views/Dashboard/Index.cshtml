@@ -1,0 +1,104 @@
+﻿@model RosterMe.Models.Dashboard
+<!-- model IEnumerable<RosterMe.Models.Dashboard> -->
+@{
+    //Display Home Layout
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    //Set tab title
+    ViewData["Title"] = "Dashboard";
+}
+
+<!-- User Profile Section -->
+<section class="section-padding" id="about-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-5">
+                <div class="page-title">
+                    <h2 class="title wow fadeInUp">
+                        Your Details
+                    </h2>
+                    <div class="wow fadeInUp" data-wow-delay="0.5s">
+                        <table class="userDetails" align="right">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Profile
+                                    </th>
+                                    <th>
+
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- #### User Details #### -->
+                                <tr>
+                                    <td>
+                                        Job Title
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.Employee.Position)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="wow fadeInUp" data-wow-delay="0.7s">
+                    <a href="#" class="bttn bttn-primary">Learn More</a>
+                </div>
+            </div>
+            <div class="hidden-xs col-sm-6 col-md-offset-1">
+                <img src="images/about-image.png" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End: User Profile Section -->
+<!-- Start: Shifts -->
+<section class="section-padding gray-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <div class="video-box">
+                    <img src="images/video-image.png" alt="">
+                    <a href="https://www.youtube.com/watch?v=7e90gBu4pas" class="video-bttn"><img src="images/video-button.png" alt=""></a>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-5 col-md-offset-1 wow fadeInUp">
+                <div class="page-title">
+                    <h2 class="title">Why Choose Us?</h2>
+                    <ul class="tabs-list">
+                        <li class="active"><a data-toggle="pill" href="#our_mission">Our Mission</a></li>
+                        <li><a data-toggle="pill" href="#our_vission">Our Vission</a></li>
+                        <li><a data-toggle="pill" href="#our_support">Our Support</a></li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div id="our_mission" class="tab-pane fade in active">
+                        <h4 class="upper thing">SINCE WE HAVE 25 YEARS </h4>
+                        <h3 class="upper">EXPERIENCE IN THIS PASSION</h3>
+                        <p>Aenean rutrum, lorem sed cursus tristique, turpis velit ullamcorper ligula, id pretium elit augue in libero. Suspendisse in porttitor orci. Pellentesque vel gravida augue.</p>
+                        <br />
+                        <a href="#" class="bttn bttn-sm bttn-primary">View More</a>
+                    </div>
+                    <div id="our_vission" class="tab-pane fade">
+                        <h4 class="upper thing">SINCE WE HAVE 25 YEARS </h4>
+                        <h3 class="upper">EXPERIENCE IN THIS PASSION</h3>
+                        <p>Aenean rutrum, lorem sed cursus tristique, turpis velit ullamcorper ligula, id pretium elit augue in libero. Suspendisse in porttitor orci. Pellentesque vel gravida augue.</p>
+                        <br />
+                        <a href="#" class="bttn bttn-sm bttn-primary">View More</a>
+                    </div>
+                    <div id="our_support" class="tab-pane fade">
+                        <h4 class="upper thing">SINCE WE HAVE 25 YEARS </h4>
+                        <h3 class="upper">EXPERIENCE IN THIS PASSION</h3>
+                        <p>Aenean rutrum, lorem sed cursus tristique, turpis velit ullamcorper ligula, id pretium elit augue in libero. Suspendisse in porttitor orci. Pellentesque vel gravida augue.</p>
+                        <br />
+                        <a href="#" class="bttn bttn-sm bttn-primary">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End: Shifts -->

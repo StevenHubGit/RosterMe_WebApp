@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RosterMe", "RosterMe.csproj", "{DCAC65B6-B6EC-4B78-9C2D-5DF772143DCF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCAC65B6-B6EC-4B78-9C2D-5DF772143DCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCAC65B6-B6EC-4B78-9C2D-5DF772143DCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCAC65B6-B6EC-4B78-9C2D-5DF772143DCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCAC65B6-B6EC-4B78-9C2D-5DF772143DCF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F7C2457-D2C7-480F-9F48-DECBC7863F50}
+	EndGlobalSection
+EndGlobal

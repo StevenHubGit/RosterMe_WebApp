@@ -1,0 +1,78 @@
+﻿<!-- Mainmenu-Area -->
+<nav class="navbar mainmenu-area" data-spy="affix" data-offset-top="197">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="search-box" class="collapse">
+                    <form action="#">
+                        <input type="search" class="form-control" placeholder="What do you want to know?">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="navbar-header smoth">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainmenu">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#home-area"><img src="images/logo.png" alt=""></a>
+                </div>
+                <div class="collapse navbar-collapse navbar-right" id="mainmenu">
+                    <ul class="nav navbar-nav navbar-right help-menu">
+
+                        <!-- #### Login Icon #### -->
+                        <li>
+                            <a asp-controller="Login" asp-action="Index">
+                                <img src="~/images/original/login-icon_90x90.png"/>
+                            </a>
+                        </li>
+
+                        <!-- #### Search Box Icon #### -->
+                        <li>
+                            <a asp-controller="Search" asp-action="SearchData" data-toggle="collapse">
+                                <img src="~/images/original/zoom-search-2-icon_90x90.png" />
+                            </a>
+                        </li>
+
+                        <!-- #### Country Selection #### -->
+                        <li class="select-cuntry">
+                            <select name="counter" id="counter">
+                                <option value="ENG">ENG</option>
+                                <option value="BEN">BEN</option>
+                                <option value="ARA">ARA</option>
+                                <option value="ARG">ARG</option>
+                                <option value="CHV">CHV</option>
+                            </select>
+                        </li>
+                    </ul>
+
+                    <!-- #### Pages Navigation #### -->
+                    <ul class="nav navbar-nav primary-menu">
+                        <li class="active">
+                            <a asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Pricing" asp-action="Index">Pricing</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Timesheet" asp-action="Index">Timesheet</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Home" asp-action="ContactUs">Contact Us</a>
+                        </li>
+                        <li>
+                            <a asp-controller="Manage" asp-action="Index">Manage</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Mainmenu-Area-/ -->

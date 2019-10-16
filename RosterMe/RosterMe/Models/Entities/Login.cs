@@ -12,7 +12,11 @@ namespace Polynesians.Models.Entities
         private static string LOG_TAG = "Login class message";
 
         //Class attributes
-        public int EmployeeID { get; set; }
+        [Display(Name = "Login ID")]
+        public int LoginId { get; set; }
+
+        [Display(Name = "Employee ID")]
+        public int EmployeeId { get; set; }
 
         [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public string Username { get; set; }

@@ -78,10 +78,12 @@ namespace RosterMe.Controllers
             }
 
             var employee = await _context.Employees.FindAsync(id);
+
             if (employee == null)
             {
                 return NotFound();
             }
+
             return View(employee);
         }
 

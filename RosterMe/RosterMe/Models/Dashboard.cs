@@ -1,4 +1,5 @@
-﻿using RosterMe.Models.Entities;
+﻿using Polynesians.Models.Entities;
+using RosterMe.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace RosterMe.Models
 
         //Class attributes
         public Employee Employee { get; set; }
+        public Login Login { get; set; }
+        public LoginTrail LoginTrail { get; set; }
     }
 }

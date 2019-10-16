@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20191015225726_AddingLoginEntity.cs" />
+    <Compile Remove="Migrations\20191015225726_AddingLoginEntity.Designer.cs" />
+    <Compile Remove="Migrations\20191015235352_AddingLoginTrailEntity.cs" />
+    <Compile Remove="Migrations\20191015235352_AddingLoginTrailEntity.Designer.cs" />
+    <Compile Remove="Migrations\20191016000823_AddingLoginTrailEntity.cs" />
+    <Compile Remove="Migrations\20191016000823_AddingLoginTrailEntity.Designer.cs" />
+    <Compile Remove="Migrations\20191016001456_AddingLoginTrailEntity.cs" />
+    <Compile Remove="Migrations\20191016001456_AddingLoginTrailEntity.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>

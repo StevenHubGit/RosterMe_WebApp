@@ -29,21 +29,33 @@ namespace RosterMe.Controllers
         public async Task<ActionResult> Index(int? employeeID)
         {
             //Set & store query
-            var employeeDetails = await _rosterMeContext.Employees
-                .FirstOrDefaultAsync(m => m.EmployeeId == employeeID);
+            var loginEmployee = await _rosterMeContext.Login
+                .Where(loginEmp => loginEmp.EmployeeId == employeeID)
+                .Select(loginEmp => loginEmp.Username)
+                .ToListAsync();
 
-            //Check if employee's details are null
-            if (employeeDetails == null)
+            //Create String to store login employee
+            String login = "";
+
+            //Loop through Login Employee List
+            for(int i = 0; i < loginEmployee.Count; i++)
             {
-                //Return message
-                return Content(LOG_TAG + ": The Employee details are null"
+                //Store content
+                login += loginEmployee[i];
+            }
+
+            //Check if login employee details are null
+            if(login != null)
+            {
+                //Print message
+                return Content(LOG_TAG + ": Login Employee details" +
+                    "\n" + login
                 );
             }
             else
             {
-                //Return message
-                return Content(LOG_TAG + ": The Employee details are not null" +
-                    "\n- Employee Details query result: " + employeeDetails.EmployeeId
+                //Print message
+                return Content(LOG_TAG + ": No details found for employee"
                 );
             }
 

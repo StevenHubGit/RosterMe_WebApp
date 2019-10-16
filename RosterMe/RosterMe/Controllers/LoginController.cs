@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Polynesians.Models.Entities;
 using RosterMe.Data;
+using RosterMe.Models.Entities;
 
 namespace RosterMe.Controllers
 {
@@ -47,7 +50,7 @@ namespace RosterMe.Controllers
         /* ---------- Login User ---------- */
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult LoginUser()
+        public async Task<IActionResult> LoginUser([FromQuery] int empID)
         {
             //Check if model is valid
             if (ModelState.IsValid)
@@ -56,77 +59,73 @@ namespace RosterMe.Controllers
                 String inputUsername = HttpContext.Request.Form["Username"];
                 String inputPassword = HttpContext.Request.Form["Password"];
 
-                //Store connection string
-                string connectionString = Configuration["ConnectionString:RosterMeDB"];
+                //Set query
+                var loginDetails = _rosterMeContext.Login
+                    .ToList();
 
-                using (SqlConnection connection = (SqlConnection)_)
+                //
+                String login = "";
+
+                //Loop through List of login details
+                for(int i = 0; i < loginDetails.Count; i++)
                 {
-                    //Set query
-                    String query = $"Select * From Login";
+                    //Store data in String
+                    login += loginDetails[i].EmployeeId + 
+                        "\n- Username: " + loginDetails[i].Username +
+                        "\n- Password: " + loginDetails[i].Password + "\n";
 
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    //Compare inputs with login details in database
+                    if(loginDetails[i].Username.Equals(inputUsername) &&
+                        loginDetails[i].Password.Equals(inputPassword))
                     {
-                        //Set command connection
-                        command.Connection = connection;
+                        //Create Login Trail
+                        LoginTrail loginTrail = new LoginTrail();
 
-                        //Check if command connection is closed
-                        if(command.Connection.State == ConnectionState.Closed)
-                        {
-                            //Open command connection
-                            command.Connection.Open();
-                        }
+                        //Set values
+                        loginTrail.LogInTime = DateTime.Now;
+                        //loginTrail.LogInId = loginDetails[i].LoginId;
 
-                        //Check if command connection is open
-                        if(command.Connection.State == ConnectionState.Open)
-                        {
-                            try
-                            {
-                                //Execute & store command in SQL Data Reader
-                                SqlDataReader reader = command.ExecuteReader();
+                        //
+                        //_rosterMeContext.LoginTrail.Add(loginTrail);
 
-                                //Loop through reader
-                                while (reader.Read())
-                                {
-                                    //Print result
-                                    return Content(LOG_TAG + ": Query result" +
-                                        "\n- Employee ID: " + reader["EmployeId"] +
-                                        "\n- Username: " + reader["Username"] +
-                                        "\n- Password: " + reader["Password"]
-                                    );
-                                }
-                            }
-                            catch (Exception e)
-                            {
-                                //Print error
-                                return Content(LOG_TAG + ": Error" +
-                                    "\nAn error occurred while trying to retrieve login" +
-                                    "\n- Message: " + e.Message +
-                                    "\n- Stacktrace: " + e.StackTrace
-                                );
-                            }
-                            finally
-                            {
-                                //Check if command connection is open
-                                if(command.Connection.State == ConnectionState.Open)
-                                {
-                                    //Close command connection
-                                    command.Connection.Close();
-                                }
-                            }
-                        }
+                        //Save changes
+                        //_rosterMeContext.SaveChanges();
+
+                        //Redirect to action in controller without route
+                        //return View("../Dashboard/Index");
+                        //return RedirectToAction("Index", "Dashboard", null);
+                        return RedirectToAction("Index", "Dashboard", loginDetails[i].EmployeeId);
+
+                        /*
+                        //Print message
+                        return Content(LOG_TAG + ": Alright !" +
+                            "\nThe inputs matches the login details in database" +
+                            "\nInputs" +
+                            "\n- Username: " + inputUsername +
+                            "\n- Password: " + inputPassword +
+                            "\nLogin Database" +
+                            "\n- Username: " + loginDetails[i].Username +
+                            "\n- Password: " + loginDetails[i].Password
+                        );
+                        */
                     }
                 }
 
-                //Redirect to page
-                //return View("../Home/Home");
+                //Print message
+                /*
                 return Content(LOG_TAG + ": Input values for Login" +
                     "\n- Username: " + inputUsername +
-                    "\n- Password: " + inputPassword
+                    "\n- Password: " + inputPassword +
+                    "\n\nList of Login Details content" +
+                    "\n- Size: " + loginDetails.Count +
+                    "\n\nEmployee Login Details" +
+                    "\n" + login
                 );
+                */
             }
 
             //Return to current Index
-            return View();
+            return View("~/Views/Login/Index.cshtml");
         }
     }
 }

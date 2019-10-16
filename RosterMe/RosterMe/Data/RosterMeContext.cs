@@ -21,8 +21,17 @@ namespace RosterMe.Data
         //public DbSet<Dashboard> Dashboards { get; set; }
 
         /* ---------- Entities ---------- */
+        /**
+         * Entities declaration:
+         * When declaring entities, be careful of giving the same name as the table.
+         * 
+         * For instance:
+         * Entity: Employee
+         * Table Name: Employees
+         * */
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Shift> Shift { get; set; }
-        public DbSet<Login> Logins { get; set; }
+        public DbSet<Login> Login { get; set; }
+        public DbSet<LoginTrail> LoginTrail { get; set; }
     }
 }

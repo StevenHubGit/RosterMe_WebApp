@@ -13,6 +13,8 @@
     <Compile Remove="Migrations\20191016000823_AddingLoginTrailEntity.Designer.cs" />
     <Compile Remove="Migrations\20191016001456_AddingLoginTrailEntity.cs" />
     <Compile Remove="Migrations\20191016001456_AddingLoginTrailEntity.Designer.cs" />
+    <Compile Remove="Migrations\20191017020731_LoginAndLoginTrailsAdded.cs" />
+    <Compile Remove="Migrations\20191017020731_LoginAndLoginTrailsAdded.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,7 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Login\" />
     <Folder Include="Views\PartialViews\" />
   </ItemGroup>
 

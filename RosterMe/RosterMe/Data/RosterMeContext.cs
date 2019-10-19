@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Polynesians.Models.Entities;
 using RosterMe.Models;
 using RosterMe.Models.Entities;
 using System;
@@ -30,8 +29,13 @@ namespace RosterMe.Data
          * Table Name: Employees
          * */
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<Shift> Shift { get; set; }
         public DbSet<Login> Login { get; set; }
         public DbSet<LoginTrail> LoginTrail { get; set; }
+        public DbSet<Availability> Availability { get; set; }
+        public DbSet<BookedShifts> BookedShifts { get; set; }
+        public DbSet<Department> Department { get; set; }
+        public DbSet<Shift> Shift { get; set; }
+        public DbSet<ShiftInvitation> ShiftInvitation { get; set; }
+        public DbSet<Timesheets> Timesheet { get; set; }
     }
 }

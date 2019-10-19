@@ -1,5 +1,4 @@
-﻿using Polynesians.Models.Entities;
-using RosterMe.Models.Entities;
+﻿using RosterMe.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

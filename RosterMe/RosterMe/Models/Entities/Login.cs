@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Polynesians.Models.Entities
+namespace RosterMe.Models.Entities
 {
     public class Login
     {

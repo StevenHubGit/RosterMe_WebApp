@@ -25,8 +25,8 @@
 
                         <!-- #### Login Icon #### -->
                         <li>
-                            <a asp-controller="Login" asp-action="Index">
-                                <img src="~/images/original/login-icon_90x90.png"/>
+                            <a asp-controller="Logins" asp-action="Index">
+                                <img src="~/images/original/login-icon_90x90.png" />
                             </a>
                         </li>
 
@@ -60,16 +60,27 @@
                         <li>
                             <a asp-controller="Pricing" asp-action="Index">Pricing</a>
                         </li>
+                        
                         <li>
-                            <a asp-controller="Timesheet" asp-action="Index">Timesheet</a>
+                            <a asp-controller="Availabilities" asp-action="Index">Availability</a>
                         </li>
                         <li>
                             <a asp-controller="Home" asp-action="ContactUs">Contact Us</a>
                         </li>
                         <li>
+                            <a asp-controller="Home" asp-action="About">About</a>
+                        </li>
+                        <li>
                             <a asp-controller="Manage" asp-action="Index">Manage</a>
                         </li>
                     </ul>
+                    <div class="dropdown">
+                        <button class="dropbtn">MORE</button>
+                        <div class="dropdown-content">
+                            <a asp-controller="Timesheets" asp-action="Index">Timesheet</a>
+                            <a asp-controller="Employees" asp-action="Index">Employees</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

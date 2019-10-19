@@ -19,25 +19,70 @@ namespace RosterMe.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Polynesians.Models.Entities.Login", b =>
+            modelBuilder.Entity("RosterMe.Models.Entities.Availability", b =>
                 {
-                    b.Property<int>("LoginId")
+                    b.Property<int>("AvailabilityId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("AvailableDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("AvailableFromTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("AvailableToTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Password")
+                    b.HasKey("AvailabilityId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("Availability");
+                });
+
+            modelBuilder.Entity("RosterMe.Models.Entities.BookedShifts", b =>
+                {
+                    b.Property<int>("BookingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("BookedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShiftId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookingId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("ShiftId");
+
+                    b.ToTable("BookedShifts");
+                });
+
+            modelBuilder.Entity("RosterMe.Models.Entities.Department", b =>
+                {
+                    b.Property<int>("DeptId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DeptName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Username")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("DeptId");
 
-                    b.HasKey("LoginId");
-
-                    b.ToTable("Login");
+                    b.ToTable("Department");
                 });
 
             modelBuilder.Entity("RosterMe.Models.Entities.Employee", b =>
@@ -94,6 +139,27 @@ namespace RosterMe.Migrations
                     b.ToTable("Employees");
                 });
 
+            modelBuilder.Entity("RosterMe.Models.Entities.Login", b =>
+                {
+                    b.Property<int>("LoginId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("LoginId");
+
+                    b.ToTable("Login");
+                });
+
             modelBuilder.Entity("RosterMe.Models.Entities.LoginTrail", b =>
                 {
                     b.Property<int>("LoginTrailId")
@@ -101,18 +167,18 @@ namespace RosterMe.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("LogInId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("LogInTime")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("LogOutTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("LoginId")
-                        .HasColumnType("int");
-
                     b.HasKey("LoginTrailId");
 
-                    b.HasIndex("LoginId");
+                    b.HasIndex("LogInId");
 
                     b.ToTable("LoginTrail");
                 });
@@ -141,11 +207,132 @@ namespace RosterMe.Migrations
                     b.ToTable("Shift");
                 });
 
+            modelBuilder.Entity("RosterMe.Models.Entities.ShiftInvitation", b =>
+                {
+                    b.Property<int>("InvitationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("InvitationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InvitationStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NotificationStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ShiftId")
+                        .HasColumnType("int");
+
+                    b.HasKey("InvitationId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("ShiftId");
+
+                    b.ToTable("ShiftInvitation");
+                });
+
+            modelBuilder.Entity("RosterMe.Models.Entities.Timesheets", b =>
+                {
+                    b.Property<int>("AttendanceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApprovalStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("AttendanceDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShiftId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TimeIn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("TimeOut")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("AttendanceId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("ShiftId");
+
+                    b.ToTable("Timesheets");
+                });
+
+            modelBuilder.Entity("RosterMe.Models.Entities.Availability", b =>
+                {
+                    b.HasOne("RosterMe.Models.Entities.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("RosterMe.Models.Entities.BookedShifts", b =>
+                {
+                    b.HasOne("RosterMe.Models.Entities.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RosterMe.Models.Entities.Shift", "Shift")
+                        .WithMany()
+                        .HasForeignKey("ShiftId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("RosterMe.Models.Entities.LoginTrail", b =>
                 {
-                    b.HasOne("Polynesians.Models.Entities.Login", "LogInId")
+                    b.HasOne("RosterMe.Models.Entities.Login", "LogIn")
                         .WithMany()
-                        .HasForeignKey("LoginId");
+                        .HasForeignKey("LogInId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("RosterMe.Models.Entities.ShiftInvitation", b =>
+                {
+                    b.HasOne("RosterMe.Models.Entities.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RosterMe.Models.Entities.Shift", "Shift")
+                        .WithMany()
+                        .HasForeignKey("ShiftId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("RosterMe.Models.Entities.Timesheets", b =>
+                {
+                    b.HasOne("RosterMe.Models.Entities.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RosterMe.Models.Entities.Shift", "Shift")
+                        .WithMany()
+                        .HasForeignKey("ShiftId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

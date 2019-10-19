@@ -26,41 +26,10 @@ namespace RosterMe.Controllers
         /* ---------- HTTP GET Methods ---------- */
         /* ---- GET Method: Index ---- */
         [HttpGet]
-        public async Task<ActionResult> Index(int? employeeID)
+        public async Task<IActionResult> Index()
         {
-            //Set & store query
-            var loginEmployee = await _rosterMeContext.Login
-                .Where(loginEmp => loginEmp.EmployeeId == employeeID)
-                .Select(loginEmp => loginEmp.Username)
-                .ToListAsync();
-
-            //Create String to store login employee
-            String login = "";
-
-            //Loop through Login Employee List
-            for(int i = 0; i < loginEmployee.Count; i++)
-            {
-                //Store content
-                login += loginEmployee[i];
-            }
-
-            //Check if login employee details are null
-            if(login != null)
-            {
-                //Print message
-                return Content(LOG_TAG + ": Login Employee details" +
-                    "\n" + login
-                );
-            }
-            else
-            {
-                //Print message
-                return Content(LOG_TAG + ": No details found for employee"
-                );
-            }
-
             //Return Index View
-            //return View();
+            return View();
         }
 
         /* ---- GET Method: Employee Details List ---- */

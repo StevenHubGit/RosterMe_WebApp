@@ -1,0 +1,28 @@
+﻿/* #### USer Details #### */
+.userDetailsPhoto
+{
+    padding: 8px 8px 8px 8px;
+    text-align: center;
+    float: left;
+}
+.userDetailsTable
+{
+    font-family: Calibri;
+    border: 3px dashed #313131;
+    /*float: right;*/
+    width: 250px;
+    padding: 8px 8px 8px 8px;
+    text-align: center;
+}
+.userDetailsHeader
+{
+    text-align: left;
+    font-size: 18px;
+    color: #313131;
+}
+.userDetailsBody
+{
+    text-align: justify;
+    font-size: 14px;
+    color: #313131;
+}

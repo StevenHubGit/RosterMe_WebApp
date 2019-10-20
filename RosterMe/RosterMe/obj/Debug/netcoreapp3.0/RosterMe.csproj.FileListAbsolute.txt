@@ -192,3 +192,4 @@ C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_We
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\Manage\Index.cshtml.g.cs
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\RosterMe.csprojAssemblyReference.cache
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\Logins\LoginsManagement.cshtml.g.cs
+C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\Dashboard\EmployeeList.cshtml.g.cs

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RosterMe.Models.Dashboard>
+﻿@model RosterMe.Models.Dashboard
 <!-- model RosterMe.Models.Dashboard -->
 @{
     //Display Home Layout
@@ -6,6 +6,25 @@
 
     //Set tab title
     ViewData["Title"] = "Dashboard";
+
+    //Store employee details as Model
+    var employeeDetailsModel = ViewData["EmployeeDetails"];
+
+    //
+    String position = "";
+
+    //
+    if(employeeDetailsModel != null)
+    {
+        //
+        position = employeeDetailsModel.GetType().ToString();
+    }
+    else
+    {
+        <p>
+            No data in Employee Details Model
+        </p>
+    }
 }
 
 <!-- User Profile Section -->
@@ -25,7 +44,7 @@
                                         Profile
                                     </th>
                                     <th>
-
+                                        
                                     </th>
                                 </tr>
                             </thead>
@@ -33,18 +52,12 @@
                                 <!-- #### User Details #### -->
                                 <tr>
                                     <td>
-                                        Job Title
-                                    </td>
-                                    <td>
-                                        Some Title
+                                        @position
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <div class="wow fadeInUp" data-wow-delay="0.7s">
-                    <a href="#" class="bttn bttn-primary">Learn More</a>
                 </div>
             </div>
             <div class="hidden-xs col-sm-6 col-md-offset-1">
@@ -102,7 +115,7 @@
                             Shift
                         </th>
                         <th>
-                                
+
                         </th>
                     </tr>
                 </thead>

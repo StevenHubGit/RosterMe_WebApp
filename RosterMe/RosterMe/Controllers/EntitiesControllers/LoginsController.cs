@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -16,6 +17,7 @@ namespace RosterMe.Controllers.EntitiesControllers
         //Class variables
         private static String LOG_TAG = "Login Controller class message";
         private readonly RosterMeContext _context;
+        private static readonly HttpClient httpClient = new HttpClient();
 
         public LoginsController(RosterMeContext context)
         {
@@ -190,7 +192,7 @@ namespace RosterMe.Controllers.EntitiesControllers
                         employeeID = login.EmployeeId;
 
                         //Redirect to dashboard & pass employee ID
-                        return RedirectToAction("Index", "Dashboard", null);
+                        return RedirectToAction("EmployeeList", "Dashboard", new { id = employeeID});
 
                         /*
                         //Print message
@@ -218,10 +220,12 @@ namespace RosterMe.Controllers.EntitiesControllers
                     */
                 }
 
+                /*
                 //Print message
                 return Content(LOG_TAG + ": List of existing Login Details content" +
                     "\n" + loginList
                 );
+                */
             }
 
             //Redirect to view

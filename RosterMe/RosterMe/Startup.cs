@@ -58,11 +58,19 @@ namespace RosterMe
             //Routing format
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
+                endpoints.MapControllerRoute
+                (
                     name: "default",
-
                     //Call Index Action in Home Controller
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}"
+                );
+
+                //Map route for Login
+                endpoints.MapControllerRoute
+                (
+                    name: "DashboardPage",
+                    pattern: "Dasboard/{controller=Dashboard}/{action=EmployeeList}/{id?}"
+                );
             });
         }
     }

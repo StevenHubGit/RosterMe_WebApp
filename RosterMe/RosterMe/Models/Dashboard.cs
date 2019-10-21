@@ -12,8 +12,10 @@ namespace RosterMe.Models
         private static String LOG_TAG = "Dashboard Model class message";
 
         //Class attributes
-        public IEnumerable<Employee> Employee { get; set; }
-        public IEnumerable<Login> Login { get; set; }
-        public IEnumerable<LoginTrail> LoginTrail { get; set; }
+        public IEnumerable<Employee> Employees { get; set; }
+        public IEnumerable<Login> Logins { get; set; }
+        public IEnumerable<LoginTrail> LoginTrails { get; set; }
+        public IEnumerable<BookedShifts> BookedShifts { get; set; }
+        public IEnumerable<Availability> Availabilities { get; set; }
     }
 }

@@ -89,7 +89,7 @@ namespace RosterMe.Controllers
             ViewData["EmployeeDetails"] = employeeDetails;
             var model = new Dashboard
             {
-                Employee = employeeDetails
+                Employees = employeeDetails
             };
 
             //Return View

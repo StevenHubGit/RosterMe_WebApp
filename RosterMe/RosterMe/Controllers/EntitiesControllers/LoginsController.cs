@@ -161,7 +161,7 @@ namespace RosterMe.Controllers.EntitiesControllers
 
         //Login User
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> LoginUser(Dashboard dashboard)
         {
             //Check if model is valid
@@ -174,8 +174,10 @@ namespace RosterMe.Controllers.EntitiesControllers
                 //Create String to store List of logins
                 String loginList = "";
 
-                //Create integer to store employee ID
+                //Create variables to store data
                 int employeeID = 0;
+                int loginID = 0;
+                DateTime loginDate = DateTime.Now;
 
                 //Store List of existing Login details
                 var loginDetails = from lD in _context.Login
@@ -188,11 +190,9 @@ namespace RosterMe.Controllers.EntitiesControllers
                     if(login.Username.ToString().Equals(inputUsername) &&
                         login.Password.ToString().Equals(inputPassword))
                     {
-                        //Store employee ID
+                        //Store data
                         employeeID = login.EmployeeId;
-
-                        //Redirect to dashboard & pass employee ID
-                        return RedirectToAction("EmployeeList", "Dashboard", new { id = employeeID});
+                        loginID = login.LoginId;
 
                         /*
                         //Print message
@@ -219,6 +219,20 @@ namespace RosterMe.Controllers.EntitiesControllers
                         "\n\n";
                     */
                 }
+
+                //Set new values for login trails
+                var employeLoginTrail = new LoginTrail
+                {
+                    LogInId = loginID,
+                    LogInTime = loginDate
+                };
+
+                //Use context to add recored in login trails
+                _context.LoginTrail.Add(employeLoginTrail);
+                _context.SaveChanges();
+
+                //Redirect to dashboard & pass employee ID
+                return RedirectToAction("EmployeeList", "Dashboard", new { id = employeeID });
 
                 /*
                 //Print message

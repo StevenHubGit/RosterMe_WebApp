@@ -17,7 +17,6 @@ namespace RosterMe.Controllers.EntitiesControllers
         //Class variables
         private static String LOG_TAG = "Login Controller class message";
         private readonly RosterMeContext _context;
-        private static readonly HttpClient httpClient = new HttpClient();
 
         public LoginsController(RosterMeContext context)
         {
@@ -178,6 +177,8 @@ namespace RosterMe.Controllers.EntitiesControllers
                 int employeeID = 0;
                 int loginID = 0;
                 DateTime loginDate = DateTime.Now;
+                bool isMatch = false;
+                String role = "";
 
                 //Store List of existing Login details
                 var loginDetails = from lD in _context.Login
@@ -193,6 +194,9 @@ namespace RosterMe.Controllers.EntitiesControllers
                         //Store data
                         employeeID = login.EmployeeId;
                         loginID = login.LoginId;
+
+                        //Set boolean
+                        isMatch = true;
 
                         /*
                         //Print message
@@ -220,19 +224,59 @@ namespace RosterMe.Controllers.EntitiesControllers
                     */
                 }
 
-                //Set new values for login trails
-                var employeLoginTrail = new LoginTrail
+                //Check boolean value
+                if(isMatch == true)
                 {
-                    LogInId = loginID,
-                    LogInTime = loginDate
-                };
+                    //Set new values for login trails
+                    var employeLoginTrail = new LoginTrail
+                    {
+                        LogInId = loginID,
+                        LogInTime = loginDate
+                    };
 
-                //Use context to add recored in login trails
-                _context.LoginTrail.Add(employeLoginTrail);
-                _context.SaveChanges();
+                    //Use context to add recored in login trails
+                    _context.LoginTrail.Add(employeLoginTrail);
+                    _context.SaveChanges();
 
-                //Redirect to dashboard & pass employee ID
-                return RedirectToAction("EmployeeList", "Dashboard", new { id = employeeID });
+                    //Store query
+                    var employeeDetails = from emp in _context.Employees
+                                          join l in _context.Login
+                                          on emp.EmployeeId equals l.EmployeeId
+                                          where emp.EmployeeId == employeeID
+                                          select emp;
+                    
+                    //Loop through List
+                    foreach(var detail in employeeDetails)
+                    {
+                        //Check employee role
+                        if(detail.UserRole.Equals("Admin"))
+                        {
+                            //Redirect to dashboard & pass employee ID
+                            return RedirectToAction("AdminDashboard", "Dashboard", new { id = employeeID });
+                        }
+                        else if(detail.UserRole.Equals("Manager"))
+                        {
+                            //Redirect to dashboard & pass employee ID
+                            return RedirectToAction("ManagerDashboard", "Dashboard", new { id = employeeID });
+                        }
+                        else if (detail.UserRole.Equals("Employee"))
+                        {
+                            //Redirect to dashboard & pass employee ID
+                            return RedirectToAction("EmployeeDashboard", "Dashboard", new { id = employeeID });
+                        }
+
+                        /*
+                        //Print message
+                        return Content(LOG_TAG + ": Logged In Employee Details" +
+                            "\n- Role: " + detail.UserRole
+                        );
+                        */
+                    }
+                }
+                else
+                {
+                    //Print error
+                }
 
                 /*
                 //Print message
@@ -243,7 +287,7 @@ namespace RosterMe.Controllers.EntitiesControllers
             }
 
             //Redirect to view
-            return View(dashboard);
+            return View("~/Views/Logins/Index.cshtml");
         }
 
         private bool LoginExists(int id)

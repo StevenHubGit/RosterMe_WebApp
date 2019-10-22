@@ -3,5 +3,25 @@
 {
     text-align: center;
     font-family: Calibri;
-    margin: 35px 0px 25px 0px;
+    margin: 15px 15px 15px 15px;
+}
+
+#loginAppLogo 
+{
+    width: 100%;
+    display: block;
+    float: left;
+    background-color: #e6e6e6;
+}
+
+#loginHorizontalDivider
+{
+    
+}
+
+#loginForm 
+{
+    width: 100px;
+    display: block;
+    float: right;
 }

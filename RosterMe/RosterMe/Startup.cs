@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using RosterMe.Data;
+using System;
 
 namespace RosterMe
 {
@@ -26,11 +27,21 @@ namespace RosterMe
             //
             //services.AddSingleton<IConfiguration>(Configuration);
 
+            //Distribute Memory Cache Service
+            services.AddDistributedMemoryCache();
+
             //Add DB Context in services
             services.AddDbContext<RosterMeContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("RosterMeDB")));
 
             //Authentification Service (if needed)
+            services.AddSession(options => 
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+            });
+
+            //MVC Service
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +61,9 @@ namespace RosterMe
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            //Add user session configuration
+            app.UseSession();
 
             app.UseRouting();
 

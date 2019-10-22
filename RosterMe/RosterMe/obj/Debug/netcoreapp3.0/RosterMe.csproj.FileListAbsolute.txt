@@ -141,7 +141,6 @@ C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_We
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\Shifts\Edit.cshtml.g.cs
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\Shifts\Index.cshtml.g.cs
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_DashboardLayout.cshtml.g.cs
-C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\RosterMe.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\Logins\Create.cshtml.g.cs
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\Logins\Delete.cshtml.g.cs
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\Logins\Details.cshtml.g.cs
@@ -192,4 +191,8 @@ C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_We
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\Manage\Index.cshtml.g.cs
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\RosterMe.csprojAssemblyReference.cache
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\Logins\LoginsManagement.cshtml.g.cs
-C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\Dashboard\EmployeeList.cshtml.g.cs
+C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\RosterMe.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\PartialViews\_UserProfileLayout.cshtml.g.cs
+C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\Dashboard\AdminDashboard.cshtml.g.cs
+C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\Dashboard\EmployeeDashboard.cshtml.g.cs
+C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\Dashboard\ManagerDashboard.cshtml.g.cs

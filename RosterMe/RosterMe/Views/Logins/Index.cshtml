@@ -8,43 +8,64 @@
     ViewData["Title"] = "Login";
 }
 
-<!-- HTML content -->
-<hr />
-<h2 class="loginTitle"> Welcome please login to access your session </h2>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-controller="Logins" asp-action="LoginUser">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Username" />
-
-            <div class="form-group">
-                <label asp-for="Username" class="control-label"></label>
-                <input asp-for="Username" class="form-control" />
-                <span asp-validation-for="Username" class="text-danger"></span>
+<!-- #### Login Form Sections #### -->
+<section>
+    <hr />
+    <h2 class="loginTitle"> Welcome to RosterMe </h2>
+    <hr />
+    <div id="row">
+        <!-- #### Column: Web App Logo #### -->
+        <div id="column">
+            <div id="loginAppLogo">
+                <img src="~/images/original/RosterMe_logo_400x400.png" />
             </div>
+        </div>
+        <!-- #### Divider #### -->
+        <!--
+        <div id="loginHorizontalDivider">
+            <img src="~/images/original/maori_pattern_vertical_divider_icon.png" />
+        </div>
+        -->
+        <!-- #### Column: Form #### -->
+        <div id="column">
+            <div id="loginForm">
+                <form asp-controller="Logins" asp-action="LoginUser">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Username" />
 
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
+                    <div class="form-group">
+                        <label asp-for="Username" class="control-label"></label>
+                        <input asp-for="Username" class="form-control" />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
 
-            <!--
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" class="loginRememberMe"/>
-                        Remember Me
-                        Html.DisplayNameFor(m => m.RememberMe)
-                    </label>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <!--
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" class="loginRememberMe"/>
+                            Remember Me
+                            Html.DisplayNameFor(m => m.RememberMe)
+                        </label>
+                    </div>
                 </div>
-            </div>
-            -->
+                -->
 
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary" />
+                    <div id="loginButton">
+                        <input type="submit" value="Login" class="btn btn-primary" />
+                    </div>
+
+                    <div id="loginOptions">
+                        <!-- #### Other Login Options #### -->
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</section>

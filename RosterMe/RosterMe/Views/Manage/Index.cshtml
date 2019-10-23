@@ -1,0 +1,105 @@
+﻿
+@{
+    //Set Layout
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+
+    //Set tab title
+    ViewData["Title"] = "Management";
+}
+
+<hr />
+<!-- Start: Management-Area -->
+<section class="" id="">
+    <div class="">
+        <div class="">
+            <div class="">
+                <div class="page-title">
+                    <h2 class="title wow fadeInUp">
+                        RosterMe Management
+                    </h2>
+                </div>
+                <!-- #### Cards to manage data #### -->
+                <div class="row">
+                    <div class="column">
+                        <div class="card">
+                            <h3>Employees</h3>
+                            <p style="color: #313131;">
+                                Here you can manage employees
+                            </p>
+                            <p>
+                                <a asp-controller="Employees" asp-action="Index"
+                                   style="color: #0066ff;">
+                                    Manage
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="column">
+                        <div class="card">
+                            <h3>Passwords</h3>
+                            <p style="color: #313131;">
+                                Here you can manage passwords
+                            </p>
+                            <p>
+                                <a asp-controller="Logins" asp-action="LoginsManagement"
+                                   style="color: #0066ff;">
+                                    Manage
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="column">
+                        <div class="card">
+                            <h3>Invite</h3>
+                            <p style="color: #313131;">
+                                Here you can invite employees
+                            </p>
+                            <p>
+                                <a asp-controller="ShiftInvitations" asp-action="Index"
+                                   style="color: #0066ff;">
+                                    Manage
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="column">
+                        <div class="card">
+                            <h3>Shifts</h3>
+                            <p style="color: #313131;">
+                                Here you can manage shifts
+                            </p>
+                            <p>
+                                <a asp-controller="Shifts" asp-action="Index"
+                                   style="color: #0066ff;">
+                                    Manage
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- #### Add separator #### -->
+                <hr><hr>
+                <div class="row">
+                    <div class="column">
+                        <div class="card">
+                            <h3>Timesheets</h3>
+                            <p style="color: #313131;">
+                                Here you can manage timesheets
+                            </p>
+                            <p>
+                                <a asp-controller="Timesheets" asp-action="TimesheetsManagement"
+                                   style="color: #0066ff;">
+                                    Manage
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End: Management-Area -->

@@ -1,0 +1,48 @@
+﻿@model RosterMe.Models.Entities.ShiftInvitation
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ShiftInvitation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Employee.EmployeeId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Shift)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Shift.ShiftId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InvitationStatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InvitationStatus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InvitationDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InvitationDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NotificationStatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NotificationStatus)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.InvitationId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,27 @@
+﻿/* ########## Login Page Styles ########## */
+.loginTitle
+{
+    text-align: center;
+    font-family: Calibri;
+    margin: 15px 15px 15px 15px;
+}
+
+#loginAppLogo 
+{
+    width: 100%;
+    display: block;
+    float: left;
+    background-color: #e6e6e6;
+}
+
+#loginHorizontalDivider
+{
+    
+}
+
+#loginForm 
+{
+    width: 100px;
+    display: block;
+    float: right;
+}

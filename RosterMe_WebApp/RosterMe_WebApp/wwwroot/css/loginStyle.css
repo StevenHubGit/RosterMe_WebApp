@@ -1,0 +1,25 @@
+﻿/* ---- Login page global content ---- */
+.loginContainer {
+    font-family: Calibri;
+    font-size: 14px;
+    color: #313131;
+}
+
+/* ---- Welcoming title ---- */
+.welcomingTitle
+{
+    font-size: 22px;
+}
+
+/* ---- Login input table ---- */
+.loginInputTable
+{
+    border: hidden;
+    text-align: center;
+}
+
+/* ---- Login options ---- */
+.loginOptions
+{
+    text-align: center;
+}

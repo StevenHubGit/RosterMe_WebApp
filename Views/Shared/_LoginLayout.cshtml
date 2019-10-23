@@ -1,0 +1,29 @@
+﻿@{ 
+    //Set tab title
+    ViewData["Title"] = "Login";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- ########## Head: Template ########## -->
+<partial name="~/Views/PartialViews/_HeadLayout.cshtml" />
+
+<body>
+
+    <!-- ########## Body: Original ########## -->
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- ########## Footer: Template ########## -->
+    <partial name="~/Views/PartialViews/_FooterLayout.cshtml" />
+
+    <!-- ########## Scripts: Original ########## -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/orignal/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

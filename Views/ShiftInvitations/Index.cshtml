@@ -1,0 +1,60 @@
+﻿@model IEnumerable<RosterMe.Models.Entities.ShiftInvitation>
+
+@{
+    ViewData["Title"] = "Shift Invitation";
+}
+
+<hr />
+<h2>Shift Invitations</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Shift)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvitationStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvitationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NotificationStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shift.ShiftId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvitationStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvitationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NotificationStatus)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.InvitationId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.InvitationId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.InvitationId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

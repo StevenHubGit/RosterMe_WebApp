@@ -1,0 +1,131 @@
+﻿@model RosterMe.Models.Dashboard
+<!-- model RosterMe.Models.Dashboard -->
+@{
+    //Display Home Layout
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    //Set tab title
+    ViewData["Title"] = "Dashboard";
+
+    //Store employee details as Model
+    List<RosterMe.Models.Entities.Employee> employeeDetailsModel =
+        (List<RosterMe.Models.Entities.Employee>)ViewData["EmployeeDetails"];
+
+    //Store employee booked shifts as Model
+    List<RosterMe.Models.Entities.BookedShifts> employeeBookedShifts =
+        (List<RosterMe.Models.Entities.BookedShifts>)ViewData["EmployeeBookedShifts"];
+
+    //Store employee availabilities as Model
+    List<RosterMe.Models.Entities.Availability> employeeAvailabilities =
+        (List<RosterMe.Models.Entities.Availability>)ViewData["EmployeeAvailabilities"];
+
+    //
+    String position = "";
+
+    //
+    if (employeeDetailsModel != null)
+    {
+        /*
+        <p>
+            There are data in Employee Details model
+            @for(int i = 0; i < employeeDetailsModel.Count; i++)
+            {
+                @employeeDetailsModel[i].FirstName
+            }
+        </p>
+        */
+    }
+    else
+    {
+        <p>
+            No data in Employee Details Model
+        </p>
+    }
+}
+
+<!-- #### User Details #### -->
+<partial name="~/Views/PartialViews/_UserProfileLayout.cshtml" />
+
+<!-- Start: Shifts -->
+<section class="section-padding gray-bg">
+    <div class="row">
+        <div class="column" style="margin: 0px 15px 0px 15px; float: left;">
+            <h2>
+                Confirmed Bookings
+            </h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Employees
+                        </th>
+                        <th>
+                            Shift
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < employeeBookedShifts.Count(); i++)
+                    {
+                        <tr>
+                            <td>
+                                @employeeBookedShifts[i].Employee.FirstName
+                                @employeeBookedShifts[i].Employee.LastName
+                            </td>
+                            <td>
+                                @employeeBookedShifts[i].BookedTime
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="column" style="margin: 0px 15px 0px 0px; float: right;">
+            <h2>
+                Week's Availabilities
+            </h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Employees
+                        </th>
+                        <th>
+                            Date
+                        </th>
+                        <th>
+                            Shift
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < employeeAvailabilities.Count(); i++)
+                    {
+                        <tr>
+                            <td>
+                                @employeeAvailabilities[i].Employee.FirstName
+                                @employeeAvailabilities[i].Employee.LastName
+                            </td>
+                            <td>
+                                <input type="datetime" />
+                            </td>
+                            <td>
+                                @employeeAvailabilities[i].AvailableDate
+                            </td>
+                            <td>
+                                <a href="~/Views/ShiftInvitations/Index.cshtml">
+                                    Invite
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!-- End: Shifts -->

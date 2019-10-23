@@ -1,0 +1,153 @@
+﻿@model RosterMe.Models.Dashboard
+<!-- model RosterMe.Models.Dashboard -->
+@{
+    //Display Home Layout
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    //Set tab title
+    ViewData["Title"] = "Dashboard";
+
+    //Store employee details as Lists
+    //Employee
+    List<RosterMe.Models.Entities.Employee> employeeDetailsModel =
+        (List<RosterMe.Models.Entities.Employee>) ViewData["EmployeeDetails"];
+    //Booked Shifts
+    List<RosterMe.Models.Entities.BookedShifts> employeeBookedShifts_List =
+        (List<RosterMe.Models.Entities.BookedShifts>) ViewData["EmployeeBookedShifts"];
+    //Availabilities
+    List<RosterMe.Models.Entities.Availability> employeeAvailabilities_List =
+        (List<RosterMe.Models.Entities.Availability>) ViewData["EmployeeAvailabilities"];
+    //Logged In Employees
+    List<RosterMe.Models.Entities.LoginTrail> loggedInEmployees_List =
+        (List<RosterMe.Models.Entities.LoginTrail>) ViewData["LoggedInEmployees"];
+    //Employees Login
+    List<RosterMe.Models.Entities.Login> employeesLogin_List =
+        (List<RosterMe.Models.Entities.Login>) ViewData["EmployeesLogin"];
+
+    /*
+    //Loop through logged in employees
+    foreach(var employee in employeeDetailsModel)
+    {
+        <p>
+            @employee.EmployeeId
+        </p>
+    }
+    */
+}
+
+<!-- #### User Profile ##### -->
+<partial name="~/Views/PartialViews/_UserProfileLayout.cshtml" />
+
+<!-- #### Separator ##### -->
+<hr />
+<hr style="border: 1px solid black;" />
+
+<!-- #### Section: Admin Data ##### -->
+<section class="section-padding">
+    <div class="container">
+        <div id="row">
+            <!-- #### Section: Logged In Employees ##### -->
+            <div id="column">
+                <h2 class="">
+                    Today's Logged In Employees
+                </h2>
+                <hr />
+                <table class="">
+                    <thead>
+                        <tr>
+                            <th>
+                                Employee
+                            </th>
+                            <th>
+                                Login Time
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in loggedInEmployees_List)
+                        {
+                            <tr>
+                                <td>
+                                    @item.LogInId
+                                </td>
+                                <td>
+                                    @item.LogInTime.ToString("hh:mm")
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- #### Section: Available & Confirmed Employee's Shifts ##### -->
+            <div id="column">
+                <h2 class="">
+                    Available &amp; Confirmed Shifts
+                </h2>
+                <hr />
+                <table class="">
+                    <thead>
+                        <tr>
+                            <th>
+                                Employee
+                            </th>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in employeeAvailabilities_List)
+                        {
+                            <tr>
+                                <td>
+                                    @item.EmployeeId
+                                </td>
+                                <td>
+                                    @item.AvailableDate.Date
+                                </td>
+                                <td>
+                                    Some Status
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- #### Section: Password Requests ##### -->
+            <div id="column">
+                <h2 class="">
+                    Password Requests
+                </h2>
+                <hr />
+                <table class="">
+                    <thead>
+                        <tr>
+                            <th>
+                                Employee
+                            </th>
+                            <th>
+                                Date
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in employeesLogin_List)
+                        {
+                            <tr>
+                                <td>
+                                    @item.EmployeeId
+                                </td>
+                                <td>
+                                    @item.Password
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

@@ -4,34 +4,34 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h1>Details</h1>
 
 <div>
     <h4>Shift</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
+    <dl class="row">
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ShiftName)
         </dt>
-        <dd>
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ShiftName)
         </dd>
-        <dt>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.StartTime)
         </dt>
-        <dd>
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.StartTime)
         </dd>
-        <dt>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.FinishTime)
         </dt>
-        <dd>
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.FinishTime)
         </dd>
-        <dt>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ShftCreatedDate)
         </dt>
-        <dd>
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ShftCreatedDate)
         </dd>
     </dl>

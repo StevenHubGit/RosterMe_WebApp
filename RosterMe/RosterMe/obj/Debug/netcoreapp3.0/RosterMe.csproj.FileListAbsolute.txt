@@ -196,3 +196,8 @@ C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_We
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\Dashboard\AdminDashboard.cshtml.g.cs
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\Dashboard\EmployeeDashboard.cshtml.g.cs
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\Dashboard\ManagerDashboard.cshtml.g.cs
+C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\PasswordRequests\Create.cshtml.g.cs
+C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\PasswordRequests\Delete.cshtml.g.cs
+C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\PasswordRequests\Details.cshtml.g.cs
+C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\PasswordRequests\Edit.cshtml.g.cs
+C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\PasswordRequests\Index.cshtml.g.cs

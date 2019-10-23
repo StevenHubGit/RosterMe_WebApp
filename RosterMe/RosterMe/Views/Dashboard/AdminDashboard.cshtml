@@ -21,8 +21,8 @@
     List<RosterMe.Models.Entities.LoginTrail> loggedInEmployees_List =
         (List<RosterMe.Models.Entities.LoginTrail>) ViewData["LoggedInEmployees"];
     //Employees Login
-    List<RosterMe.Models.Entities.Login> employeesLogin_List =
-        (List<RosterMe.Models.Entities.Login>) ViewData["EmployeesLogin"];
+    List<RosterMe.Models.Entities.PasswordRequest> passwordRequests_List =
+        (List<RosterMe.Models.Entities.PasswordRequest>) ViewData["PasswordRequests"];
 
     /*
     //Loop through logged in employees
@@ -68,10 +68,11 @@
                         {
                             <tr>
                                 <td>
-                                    @item.LogInId
+                                    @item.LogIn.Employee.FirstName 
+                                    @item.LogIn.Employee.LastName
                                 </td>
                                 <td>
-                                    @item.LogInTime.ToString("hh:mm")
+                                    @item.LogInTime.ToString("dd/MM/YYYY hh:mm")
                                 </td>
                             </tr>
                         }
@@ -103,13 +104,15 @@
                         {
                             <tr>
                                 <td>
-                                    @item.EmployeeId
+                                    @item.Employee.FirstName 
+                                    @item.Employee.LastName
                                 </td>
                                 <td>
                                     @item.AvailableDate.Date
                                 </td>
                                 <td>
-                                    Some Status
+                                    @item.AvailableFromTime -
+                                    @item.AvailableToTime
                                 </td>
                             </tr>
                         }
@@ -131,17 +134,24 @@
                             <th>
                                 Date
                             </th>
+                            <th>
+                                New Password
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in employeesLogin_List)
+                        @foreach (var item in passwordRequests_List)
                         {
                             <tr>
                                 <td>
-                                    @item.EmployeeId
+                                    @item.Login.Employee.FirstName 
+                                    @item.Login.Employee.LastName
                                 </td>
                                 <td>
-                                    @item.Password
+                                    @item.RequestDate.ToString("dd/MM/YYYY")
+                                </td>
+                                <td>
+                                    @item.NewPassword
                                 </td>
                             </tr>
                         }

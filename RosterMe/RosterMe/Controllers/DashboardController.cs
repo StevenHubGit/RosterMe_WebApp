@@ -50,12 +50,17 @@ namespace RosterMe.Controllers
                 .OrderBy(emp => emp.FirstName)
                 .ToListAsync();
             var employeeBookedShifts = await _rosterMeContext.BookedShifts
-                .Where(emp => emp.EmployeeId == employeeID)
-                .OrderBy(emp => emp.BookedTime)
+                .Include(bS => bS.Employee)
+                .Include(bS => bS.Shift)
+                //.Where(bS => bS.EmployeeId == employeeID)
+                .OrderBy(bS => bS.Employee.LastName)
+                .Take(5)
                 .ToListAsync();
             var employeeAvailabilities = await _rosterMeContext.Availability
-                .Where(emp => emp.EmployeeId == employeeID)
-                .OrderBy(emp => emp.AvailableDate)
+                .Include(avail => avail.Employee)
+                //.Where(avail => avail.EmployeeId == employeeID)
+                .OrderBy(avail => avail.Employee.LastName)
+                .Take(5)
                 .ToListAsync();
 
             //Create String to store logged in employee details
@@ -140,27 +145,26 @@ namespace RosterMe.Controllers
                 .OrderBy(emp => emp.FirstName)
                 .ToListAsync();
             var employeeBookedShifts = await _rosterMeContext.BookedShifts
-                //.Where(bS => bS.EmployeeId == employeeID)
-                .OrderBy(bS => bS.BookedTime)
-                .Take(15)
+                .Include(bS => bS.Employee)
+                .Include(bS => bS.Shift)
+                .OrderBy(bS => bS.Employee.LastName)
+                .Take(5)
                 .ToListAsync();
             var employeeAvailabilities = await _rosterMeContext.Availability
-                //.Where(avail => avail.EmployeeId == employeeID)
-                .OrderBy(avail => avail.AvailableDate)
-                .Take(15)
+                .Include(avail => avail.Employee)
+                .OrderBy(avail => avail.Employee.LastName)
+                .Take(5)
                 .ToListAsync();
             var loggedInEmployees = await _rosterMeContext.LoginTrail
-                //.Where(lT => lT.LogInTime != null)
-                //.Where(lT => lT.LogOutTime == null)
-                .OrderBy(lT => lT.LoginTrailId)
-                //.GroupBy(lT => lT.LogInId)
-                .Take(15)
-                .Distinct()
+                .Include(lT => lT.LogIn)
+                .OrderBy(lT => lT.LogIn.Username)
+                .Take(5)
                 .ToListAsync();
-            var employeeLogin = await _rosterMeContext.Login
-                //.Where(login => login.EmployeeId == employeeID)
-                .OrderBy(login => login.EmployeeId)
-                .Take(15)
+            var passwordRequests = await _rosterMeContext.PasswordRequest
+                .Include(pR => pR.Login)
+                .Include(pR => pR.Login.Employee)
+                .OrderBy(pR => pR.Login.Username)
+                .Take(5)
                 .ToListAsync();
 
             //Create String to store logged in employee details
@@ -224,7 +228,7 @@ namespace RosterMe.Controllers
             ViewData["EmployeeBookedShifts"] = employeeBookedShifts;
             ViewData["EmployeeAvailabilities"] = employeeAvailabilities;
             ViewData["LoggedInEmployees"] = loggedInEmployees;
-            ViewData["EmployeesLogin"] = employeeLogin;
+            ViewData["PasswordRequests"] = passwordRequests;
 
             //Return View
             return View();
@@ -241,27 +245,29 @@ namespace RosterMe.Controllers
                 .OrderBy(emp => emp.FirstName)
                 .ToListAsync();
             var employeeBookedShifts = await _rosterMeContext.BookedShifts
+                .Include(bS => bS.Employee)
+                .Include(bS => bS.Shift)
                 //.Where(bS => bS.EmployeeId == employeeID)
-                .OrderBy(bS => bS.BookedTime)
-                .Take(15)
+                .OrderBy(bS => bS.Employee.LastName)
+                .Take(5)
                 .ToListAsync();
             var employeeAvailabilities = await _rosterMeContext.Availability
+                .Include(avail => avail.Employee)
                 //.Where(avail => avail.EmployeeId == employeeID)
                 .OrderBy(avail => avail.AvailableDate)
-                .Take(15)
+                .Take(5)
                 .ToListAsync();
             var loggedInEmployees = await _rosterMeContext.LoginTrail
-                //.Where(lT => lT.LogInTime != null)
-                //.Where(lT => lT.LogOutTime == null)
-                .OrderBy(lT => lT.LoginTrailId)
-                //.GroupBy(lT => lT.LogInId)
-                .Take(15)
-                .Distinct()
+                .Include(lT => lT.LogIn)
+                .Where(lT => lT.LogIn.EmployeeId == employeeID)
+                .OrderBy(lT => lT.LogIn.Username)
+                .Take(5)
                 .ToListAsync();
             var employeeLogin = await _rosterMeContext.Login
-                //.Where(login => login.EmployeeId == employeeID)
-                .OrderBy(login => login.EmployeeId)
-                .Take(15)
+                .Include(log => log.Employee)
+                .Where(log => log.Employee.EmployeeId == employeeID)
+                .OrderBy(log => log.Employee.LastName)
+                .Take(5)
                 .ToListAsync();
 
             //Create String to store logged in employee details

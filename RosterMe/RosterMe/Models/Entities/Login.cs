@@ -17,6 +17,7 @@ namespace RosterMe.Models.Entities
 
         [Display(Name = "Employee ID")]
         public int EmployeeId { get; set; }
+        public Employee Employee { get; set; }
 
         [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public string Username { get; set; }

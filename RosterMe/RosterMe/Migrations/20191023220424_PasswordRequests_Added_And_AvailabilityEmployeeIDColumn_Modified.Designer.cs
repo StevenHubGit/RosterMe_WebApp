@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RosterMe.Data;
 
 namespace RosterMe.Migrations
 {
     [DbContext(typeof(RosterMeContext))]
-    partial class RosterMeContextModelSnapshot : ModelSnapshot
+    [Migration("20191023220424_PasswordRequests_Added_And_AvailabilityEmployeeIDColumn_Modified")]
+    partial class PasswordRequests_Added_And_AvailabilityEmployeeIDColumn_Modified
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,7 +37,10 @@ namespace RosterMe.Migrations
                     b.Property<DateTime>("AvailableToTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EmployeeId")
+                    b.Property<int>("EmpId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("EmployeeId")
                         .HasColumnType("int");
 
                     b.HasKey("AvailabilityId");
@@ -156,8 +161,6 @@ namespace RosterMe.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("LoginId");
-
-                    b.HasIndex("EmployeeId");
 
                     b.ToTable("Login");
                 });
@@ -304,9 +307,7 @@ namespace RosterMe.Migrations
                 {
                     b.HasOne("RosterMe.Models.Entities.Employee", "Employee")
                         .WithMany()
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EmployeeId");
                 });
 
             modelBuilder.Entity("RosterMe.Models.Entities.BookedShifts", b =>
@@ -320,15 +321,6 @@ namespace RosterMe.Migrations
                     b.HasOne("RosterMe.Models.Entities.Shift", "Shift")
                         .WithMany()
                         .HasForeignKey("ShiftId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("RosterMe.Models.Entities.Login", b =>
-                {
-                    b.HasOne("RosterMe.Models.Entities.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -37,5 +37,6 @@ namespace RosterMe.Data
         public DbSet<Shift> Shift { get; set; }
         public DbSet<ShiftInvitation> ShiftInvitation { get; set; }
         public DbSet<Timesheets> Timesheet { get; set; }
+        public DbSet<PasswordRequest> PasswordRequest { get; set; }
     }
 }

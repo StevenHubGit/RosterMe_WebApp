@@ -46,15 +46,16 @@
 <!-- #### User Details #### -->
 <partial name="~/Views/PartialViews/_UserProfileLayout.cshtml"/>
 
-<!-- Start: Shifts -->
+<!-- ##### Employees Under Manager Sections #### -->
 <section class="section-padding gray-bg">
     <div class="row">
-        <div class="column">
+        <!-- #### Section: Employees' Booked Shifts #### -->
+        <div id="column">
             <h2>
                 Confirmed Bookings
             </h2>
-            <table>
-                <thead>
+            <table class="managerEmployeesDataTable">
+                <thead class="">
                     <tr>
                         <th>
                             Employees
@@ -64,7 +65,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="">
                     @for(int i = 0; i < employeeBookedShifts.Count(); i++)
                     {
                         <tr>
@@ -80,52 +81,160 @@
                 </tbody>
             </table>
         </div>
-
-        <div class="column">
+        <!-- #### Section: Employees' Availabilities #### -->
+        <div id="column">
             <h2>
                 Week's Availabilities
             </h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>
-                            Employees
-                        </th>
-                        <th>
-                            Date
-                        </th>
-                        <th>
-                            Shift
-                        </th>
-                        <th>
-
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for(int i = 0; i < employeeAvailabilities.Count(); i++)
-                    {
+            <form asp-action="InviteEmployeeToShift" asp-controller="Dashboard">
+                <table class="managerEmployeesDataTable" id="employeeInvitation">
+                    <thead class="">
                         <tr>
-                            <td>
-                                @employeeAvailabilities[i].Employee.FirstName 
-                                @employeeAvailabilities[i].Employee.LastName
-                            </td>
-                            <td>
-                                <input type="datetime"/>
-                            </td>
-                            <td>
-                                @employeeAvailabilities[i].AvailableDate
-                            </td>
-                            <td>
-                                <a href="~/Views/ShiftInvitations/Index.cshtml">
-                                    Invite
-                                </a>
-                            </td>
+                            <th>
+                                Employees
+                            </th>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Available Date
+                            </th>
+                            <th>
+
+                            </th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody class="">
+                        @for (int i = 0; i < employeeAvailabilities.Count(); i++)
+                        {
+                            <tr>
+                                <td>
+                                    @employeeAvailabilities[i].Employee.FirstName 
+                                    @employeeAvailabilities[i].Employee.LastName
+                                </td>
+                                <td>
+                                    <input type="time" name="EmployeeInviteDate"/>
+                                </td>
+                                <td>
+                                    @employeeAvailabilities[i].AvailableDate
+                                </td>
+                                <td>
+                                    <input type="submit" name="InviteEmployeeButton"
+                                           value="Invite"
+                                           class="inviteEmployee"
+                                           onclick="EmployeeInvitation(@employeeAvailabilities[i].EmployeeId)"/>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </form>
         </div>
     </div>
 </section>
 <!-- End: Shifts -->
+<script type="text/javascript">
+    function EmployeeInvitation(empID)
+    {
+        //Check if input employee ID is null
+        if (empID != null)
+        {
+            /**
+             * Javascript Try/Catch/Finally syntax:
+             * try 
+             * {
+             *      tryCode - Block of code to try
+             * }
+             * catch(err) 
+             * {
+             *      catchCode - Block of code to handle errors
+             * }
+             * finally 
+             * {
+             *      finallyCode - Block of code to be executed regardless of the try / catch result
+             * }
+             * */
+            try
+            {
+                //Store input
+                var empId = empID;
+
+                //Define & store URL to Action in Controller
+                var action = 'Url.Action("InviteEmployeeToShift")';
+                var controllerAction = 'Url.Action("InviteEmployeeToShift", "Dashboard")';
+                var urlWithVariable = "/Dashboard/InviteEmployeeToShift";
+                var urlToAction = urlWithVariable;
+
+                //Display message
+                alert("Alright !" +
+                    "\nThe Employee Invitation JQuery method is reached" +
+                    "\nInformation to pass in Ajax" +
+                    "\n- URL: " + urlToAction +
+                    "\n- Data: " + empId
+                );
+
+                //Use Ajax to Post stored employee ID
+                $.ajax
+                ({
+                    //Set URL to Controller & Action
+                    //url: 'InviteEmployeeToShift',
+                    url: urlToAction + "?empId=" + empId,
+
+                    //Pass employee ID in data
+                    data: empId,
+                    //data: '{EmployeeID: ' + inputEmployeeID + '}',
+                    //dataType: 'json',
+
+                    //Set content type
+                    contentType: "application/json; charset=utf-8",
+
+                    //Set method type
+                    type: 'POST',
+
+                    //Define what type to accept
+                    accepts: "application/json",
+
+                    //Set action on succes
+                    success: function (data)
+                    {
+                        //Check if data is not null
+                        if (data != null)
+                        {
+                            //Display data
+                            alert("The data to pass is not null" +
+                                "\n- Data: " + inputEmployeeID + "\n"
+                            );
+
+                            //Print message
+                            console.log("The data is not null" +
+                                "\n- Data to pass: " + inputEmployeeID);
+                        }
+                    },
+                    failure: function (data)
+                    {
+                        //Display message
+                        alert("Error !" +
+                            "\nAn error occurred while trying to Post employee ID to invite" +
+                            "\n- Casue: " + data + "\n"
+                        );
+                    }
+                });
+            }
+            catch (error)
+            {
+                //Print message
+                console.log("Error !" +
+                    "\nAn error occurred while trying to POST employee to invite" +
+                    "\n- Cause: " + error.message
+                );
+            }
+        }
+        else
+        {
+            //Display message
+            alert("Wait !" +
+                "\nThe input employee ID is null"
+            );
+        }
+    }
+</script>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -35,7 +36,7 @@ namespace RosterMe.Controllers
         public async Task<IActionResult> Index(int employeeID)
         {
             //Return Index View
-            return View();
+            return View("~/Views/Dashboard/Index.cshtml");
         }
 
         /* ---------- Dashboards ---------- */
@@ -335,6 +336,28 @@ namespace RosterMe.Controllers
 
             //Return View
             return View();
+        }
+
+        /* ---------- Redirections ---------- */
+        /* ---- Redirect: Shift Invitations ---- */
+        [HttpPost]
+        //[Authorize]
+        //[Route("Dashboard/InviteEmployeeToShift/{id}")]
+        public IActionResult InviteEmployeeToShift(int? empId)
+        {
+            //Return View
+            /*
+            return new JsonResult(LOG_TAG + ": Invite Employee To Shift function" +
+                "\nThis is a JSON Result return" +
+                "\n- Data to pass: " + empId
+            );
+            */
+            /*
+            return Content(LOG_TAG + ": Invite Employee To Shift method" +
+                "\nThe invited employee ID is " + empId
+            );
+            */
+            return RedirectToAction("InviteEmployee", "ShiftInvitations", new { id = empId});
         }
     }
 }

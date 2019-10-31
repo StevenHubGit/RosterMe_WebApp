@@ -47,13 +47,13 @@
     <div class="container">
         <div id="row">
             <!-- #### Section: Logged In Employees ##### -->
-            <div id="column">
+            <div id="column" style="margin: 3px 0px 3px 0px;">
                 <h2 class="">
                     Today's Logged In Employees
                 </h2>
                 <hr />
-                <table class="">
-                    <thead>
+                <table class="adminEmployeesDataTable">
+                    <thead class="">
                         <tr>
                             <th>
                                 Employee
@@ -63,7 +63,7 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="">
                         @foreach (var item in loggedInEmployees_List)
                         {
                             <tr>
@@ -80,13 +80,13 @@
                 </table>
             </div>
             <!-- #### Section: Available & Confirmed Employee's Shifts ##### -->
-            <div id="column">
+            <div id="column" style="margin: 3px 0px 3px 0px;">
                 <h2 class="">
                     Available &amp; Confirmed Shifts
                 </h2>
                 <hr />
-                <table class="">
-                    <thead>
+                <table class="adminEmployeesDataTable">
+                    <thead class="">
                         <tr>
                             <th>
                                 Employee
@@ -99,7 +99,7 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="">
                         @foreach (var item in employeeAvailabilities_List)
                         {
                             <tr>
@@ -120,13 +120,13 @@
                 </table>
             </div>
             <!-- #### Section: Password Requests ##### -->
-            <div id="column">
+            <div id="column" style="margin: 3px 0px 3px 0px;">
                 <h2 class="">
                     Password Requests
                 </h2>
                 <hr />
-                <table class="">
-                    <thead>
+                <table class="adminEmployeesDataTable">
+                    <thead class="">
                         <tr>
                             <th>
                                 Employee
@@ -139,7 +139,7 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="">
                         @foreach (var item in passwordRequests_List)
                         {
                             <tr>

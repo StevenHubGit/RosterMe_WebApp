@@ -6,6 +6,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using RosterMe.Data;
 using System;
+//Newtonsoft Dependencies
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace RosterMe
 {
@@ -40,8 +44,13 @@ namespace RosterMe
                 options.IdleTimeout = TimeSpan.FromSeconds(10);
             });
 
-            //MVC Service
-            services.AddMvc();
+            //MVC Services
+            services.AddMvc()
+                .AddNewtonsoftJson();
+
+            //Controller Services
+            services.AddControllers()
+                .AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

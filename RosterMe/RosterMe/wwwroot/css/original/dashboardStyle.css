@@ -30,25 +30,52 @@
     padding: 8px;
 }
 
-/* ########## Admin Dashboard ########## */
-/* #### Logged In Employees #### */
-.adminEmployeesDataTable th td
+/* ########## Dashboards ########## */
+/* #### Admin #### */
+.adminEmployeesDataTable
+{
+    text-align: left;
+}
+
+.adminEmployeesDataBody td
+{
+    text-align: center;
+}
+
+.adminEmployeesDataHeader th
+{
+    text-align: center;
+}
+
+/* #### Manager #### */
+.managerEmployeesDataTable 
+{
+    width: 100%;
+    text-align: left;
+}
+
+.managerEmployeesDataBody td
 {
     width: 100%;
     text-align: center;
 }
 
-.adminEmployeesDataTable
-{
-    margin: 8px 150px 8px 150px;
-}
-
-.adminEmployeesDataHeader 
+.managerEmployeesDataHeader th
 {
     width: 100%;
-    margin: 8px 150px 8px 150px;
+    text-align: center;
 }
 
+.inviteEmployee 
+{
+    background: #0066ff;
+    border-style: none;
+    color: #f2f2f2;
+    font-size: 14px;
+    padding: 8px 8px 8px 8px;
+}
+
+/* ########## Columns & Rows for Section tags ########## */
 #column 
 {
     float: left;

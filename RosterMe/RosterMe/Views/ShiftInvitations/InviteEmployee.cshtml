@@ -1,0 +1,85 @@
+﻿@model RosterMe.Models.Entities.ShiftInvitation
+@{
+    //Set tab title
+    ViewData["Title"] = "Invite Employee";
+
+    /* ---- Store View Data for Shift Invitation ---- */
+    var employeeInvitation = ViewData["EmployeeInvitation"] as RosterMe.Models.Entities.ShiftInvitation;
+    List<RosterMe.Models.Entities.Shift> existingShifts =
+        (List<RosterMe.Models.Entities.Shift>)ViewData["ExistingShifts"];
+    List<RosterMe.Models.Entities.Employee> existingEmployees =
+        (List<RosterMe.Models.Entities.Employee>)ViewData["ExistingEmployees"];
+}
+
+<!-- #### Employee Invitation: Title #### -->
+<hr /><hr />
+<h2>Invite Employee to Shift</h2>
+
+<h4>Shift Invitation Form</h4>
+<hr />
+
+<!-- #### Employee Invitation: Form #### -->
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="InvitationId" />
+            <div class="form-group">
+                <label class="control-label">
+                    @employeeInvitation.Employee.FirstName
+                    @employeeInvitation.Employee.LastName
+                </label>
+                <select class="form-control">
+                    <option>
+                        Select an employee...
+                    </option>
+                    @foreach (var employee in existingEmployees)
+                    {
+                        <option>
+                            @employee.FirstName @employee.LastName
+                        </option>
+                    }
+                </select>
+                <span asp-validation-for="@employeeInvitation.Employee.FirstName"
+                      class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">
+                    @employeeInvitation.Shift.ShiftName
+                    @employeeInvitation.ShiftId
+                </label>
+                <select class="form-control">
+                    <option>
+                        Select Shift...
+                    </option>
+                    @foreach (var shift in existingShifts)
+                    {
+                        <option>
+                            @shift.ShiftId - @shift.ShiftName
+                        </option>
+                    }
+                </select>
+                <span asp-validation-for="@employeeInvitation.Shift.ShiftName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InvitationStatus" class="control-label"></label>
+                <input asp-for="InvitationStatus" class="form-control" />
+                <span asp-validation-for="InvitationStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InvitationDate" class="control-label"></label>
+                <input asp-for="InvitationDate" class="form-control" />
+                <span asp-validation-for="InvitationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NotificationStatus" class="control-label"></label>
+                <input asp-for="NotificationStatus" class="form-control" />
+                <span asp-validation-for="NotificationStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default"
+                       style="background: #0066ff;" />
+            </div>
+        </form>
+    </div>
+</div>

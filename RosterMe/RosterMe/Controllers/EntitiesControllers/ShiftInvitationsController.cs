@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using RosterMe.Data;
 using RosterMe.Models.Entities;
 
@@ -171,57 +172,28 @@ namespace RosterMe.Controllers.EntitiesControllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpGet]
+        [HttpPost]
         //[Route("~/Views/Dashboard/InviteEmployee/{empId}")]
-        public async Task<IActionResult> InviteEmployee(int? empId)
+        public async Task<IActionResult> InviteEmployee(int? employeeID)
         {
             //Check if current model is valid
             if (ModelState.IsValid)
             {
-                //Return message
-                return Content(LOG_TAG + ": Retrieved data from Dashboard controller" +
-                    "\n- Employee ID: " + empId
-                );
-
-                /*
-                if (id == null)
+                //
+                if(employeeID != null)
                 {
-                    //Return message
-                    //return NotFound();
-                    return Content(LOG_TAG +
-                        "\nThe input ID is null"
-                    );
-                }
-                */
-
-                //Store Shift Invitation data
-                //var shiftInvitation = await _context.ShiftInvitation.FindAsync(1);
-                var shiftInvitation = await _context.ShiftInvitation
-                    .Include(sI => sI.Employee)
-                    .Include(sI => sI.Shift)
-                    .FirstAsync();
-                var existingShifts = await _context.Shift
-                    .ToListAsync();
-                var existingEmployees = await _context.Employees
-                    .ToListAsync();
-
-                if (shiftInvitation == null)
-                {
-                    //Return message
-                    //return NotFound();
-                    return Content(LOG_TAG +
-                        "\nNo data found in the Shift Invitation List"
+                    //Print message
+                    return Content("\n" + LOG_TAG + ": Alright !" +
+                        "\nThe data have been passed" +
+                        "\n- Data: " + employeeID
                     );
                 }
                 else
                 {
-                    //Store Employee & Shift Foreign Key
-                    ViewData["EmployeeInvitation"] = shiftInvitation;
-                    ViewData["ExistingShifts"] = existingShifts;
-                    ViewData["ExistingEmployees"] = existingEmployees;
-
-                    //Redirect to View with List
-                    //return View(shiftInvitation);
+                    //Print message
+                    return Content(LOG_TAG + ": Wait..." +
+                        "\nThe data have not been passed"
+                    );
                 }
             }
 

@@ -86,7 +86,7 @@
             <h2>
                 Week's Availabilities
             </h2>
-            <form asp-action="InviteEmployeeToShift" asp-controller="Dashboard">
+            <form>
                 <table class="managerEmployeesDataTable" id="employeeInvitation">
                     <thead class="">
                         <tr>
@@ -119,10 +119,11 @@
                                     @employeeAvailabilities[i].AvailableDate
                                 </td>
                                 <td>
-                                    <input type="submit" name="InviteEmployeeButton"
+                                    <input type="button" name="InviteEmployeeButton"
                                            value="Invite"
                                            class="inviteEmployee"
-                                           onclick="EmployeeInvitation(@employeeAvailabilities[i].EmployeeId)"/>
+                                           onclick="EmployeeInvitation
+                                            (@employeeAvailabilities[i].EmployeeId, event)"/>
                                 </td>
                             </tr>
                         }
@@ -134,8 +135,25 @@
 </section>
 <!-- End: Shifts -->
 <script type="text/javascript">
-    function EmployeeInvitation(empID)
+    /* ---- JQuery & Ajax function: Retrieve employee ID and redirect to view ---- */
+    function EmployeeInvitation(empID, event)
     {
+        /**
+         * Definition and Usage
+         * The preventDefault() method cancels the event if it is cancelable, meaning that the default 
+         * action that belongs to the event will not occur.
+         * 
+         * For example, this can be useful when:
+         * - Clicking on a "Submit" button, prevent it from submitting a form
+         * - Clicking on a link, prevent the link from following the URL
+         * 
+         * Note: Not all events are cancelable. Use the cancelable property to find out if an event is 
+         * cancelable.
+         * Note: The preventDefault() method does not prevent further propagation of an event through the DOM. 
+         * Use the stopPropagation() method to handle this.
+         * */
+        event.preventDefault();
+
         //Check if input employee ID is null
         if (empID != null)
         {
@@ -162,7 +180,7 @@
                 //Define & store URL to Action in Controller
                 var action = 'Url.Action("InviteEmployeeToShift")';
                 var controllerAction = 'Url.Action("InviteEmployeeToShift", "Dashboard")';
-                var urlWithVariable = "/Dashboard/InviteEmployeeToShift";
+                var urlWithVariable = "/ShiftInvitations/InviteEmployee";
                 var urlToAction = urlWithVariable;
 
                 //Display message
@@ -176,46 +194,103 @@
                 //Use Ajax to Post stored employee ID
                 $.ajax
                 ({
-                    //Set URL to Controller & Action
-                    //url: 'InviteEmployeeToShift',
-                    url: urlToAction + "?empId=" + empId,
+                    /**
+                     * URL: (Default: The current page)
+                     * Type: String
+                     * A string containing the URL to which the request is sent.
+                     * */
+                    url: urlToAction + "?employeeID=" + empId,
 
-                    //Pass employee ID in data
-                    data: empId,
-                    //data: '{EmployeeID: ' + inputEmployeeID + '}',
-                    //dataType: 'json',
+                    /**
+                     * Data: 
+                     * Type: PlainObject or String or Array
+                     * Data to be sent to the server. It is converted to a query string, if not 
+                     * already a string.
+                     * */
+                    data: { employeeID: empId },
 
-                    //Set content type
+                    /**
+                     * Async: (Default: true)
+                     * Type: Boolean
+                     * By default, all requests are sent asynchronously 
+                     * (i.e. this is set to true by default).
+                     * */
+                    async: false,
+
+                    /**
+                     * Cache: (Default: true, false for dataType 'script' and 'jsonp')
+                     * Type: Boolean
+                     * If set to false, it will force requested pages not to be cached by the browser. 
+                     * 
+                     * Note: Setting cache to false will only work correctly with HEAD and GET requests.
+                     * */
+                    cache: false,
+
+                    /**
+                     * Content Type: (Default: 'application/x-www-form-urlencoded; charset=UTF-8')
+                     * Type: Boolean or String
+                     * When sending data to the server, use this content type. 
+                     * Default is "application/x-www-form-urlencoded; charset=UTF-8", which is fine 
+                     * for most cases. 
+                     * 
+                     * If you explicitly pass in a content-type to $.ajax(), then it is always sent 
+                     * to the server (even if no data is sent).
+                     * */
                     contentType: "application/json; charset=utf-8",
 
-                    //Set method type
+                    /**
+                     * Type: (Default: 'GET')
+                     * Type: String
+                     * A set of key/value pairs that configure the Ajax request. 
+                     * All settings are optional.
+                     * */
                     type: 'POST',
 
-                    //Define what type to accept
+                    /**
+                     * Accepts: (Default: depends on dataType)
+                     * Type: PlainObject
+                     * A set of key/value pairs that map a given dataType to its MIME type, 
+                     * which gets sent in the Accept request header. 
+                     * 
+                     * This header tells the server what kind of response it will accept in return
+                     * */
                     accepts: "application/json",
 
+                    /**
+                     * Traditional:
+                     * Type: Boolean
+                     * Set this to true if you wish to use the traditional style of param serialization
+                     * */
+                    traditional: true,
+
                     //Set action on succes
-                    success: function (data)
+                    success: function (response)
                     {
-                        //Check if data is not null
-                        if (data != null)
+                        //Display message
+                        alert("Alright !" +
+                            "\nThe POST is a success" +
+                            "\n- Input data: " + empId +
+                            "\n- Data to pass: " + response.employeeID
+                        );
+
+                        //Check if data to pass is not null
+                        if (response != null)
                         {
-                            //Display data
-                            alert("The data to pass is not null" +
-                                "\n- Data: " + inputEmployeeID + "\n"
+                            //Display message
+                            alert("Great !" +
+                                "\nThe data to pass is not null" +
+                                "\n- Data: " + response
                             );
 
-                            //Print message
-                            console.log("The data is not null" +
-                                "\n- Data to pass: " + inputEmployeeID);
+                            //Redirect to page
                         }
                     },
-                    failure: function (data)
+                    failure: function (response)
                     {
                         //Display message
                         alert("Error !" +
                             "\nAn error occurred while trying to Post employee ID to invite" +
-                            "\n- Casue: " + data + "\n"
+                            "\n- Casue: " + response + "\n"
                         );
                     }
                 });

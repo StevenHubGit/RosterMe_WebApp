@@ -25,12 +25,15 @@ namespace RosterMe.Models.Entities
         public Shift Shift { get; set; }
 
         [Display(Name = "Invitation Status")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public String InvitationStatus { get; set; }
 
         [Display(Name = "Invitation Date")]
+        [DataType(DataType.Date)]
         public DateTime InvitationDate { get; set; }
 
         [Display(Name = "Notification Status")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public String NotificationStatus { get; set; }
     }
 }

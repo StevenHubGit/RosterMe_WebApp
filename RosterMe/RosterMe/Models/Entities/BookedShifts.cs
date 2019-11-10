@@ -13,11 +13,19 @@ namespace RosterMe.Models.Entities
 
         //Class attributes
         [Key]
+        [Display(Name = "Booking ID")]
         public int BookingId { get; set; }
+
+        [Display(Name = "Shift ID")]
         public int ShiftId { get; set; }
         public Shift Shift { get; set; }
+
+        [Display(Name = "Employee ID")]
         public int EmployeeId { get; set; }
         public Employee Employee { get; set; }
+
+        [Display(Name = "Booked Time")]
+        [DataType(DataType.Time)]
         public DateTime BookedTime { get; set; }
     }
 }

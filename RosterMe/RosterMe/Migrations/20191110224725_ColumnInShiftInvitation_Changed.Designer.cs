@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RosterMe.Data;
 
 namespace RosterMe.Migrations
 {
     [DbContext(typeof(RosterMeContext))]
-    partial class RosterMeContextModelSnapshot : ModelSnapshot
+    [Migration("20191110224725_ColumnInShiftInvitation_Changed")]
+    partial class ColumnInShiftInvitation_Changed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

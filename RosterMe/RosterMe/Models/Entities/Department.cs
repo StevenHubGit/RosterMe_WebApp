@@ -13,7 +13,11 @@ namespace RosterMe.Models.Entities
 
         //Class attributes
         [Key]
+        [Display(Name = "Department ID")]
         public int DeptId { get; set; }
+
+        [Display(Name = "Department Name")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public String DeptName { get; set; }
     }
 }

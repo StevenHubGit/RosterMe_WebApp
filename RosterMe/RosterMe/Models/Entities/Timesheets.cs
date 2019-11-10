@@ -13,14 +13,27 @@ namespace RosterMe.Models.Entities
 
         //Class attributes
         [Key]
+        [Display(Name = "Attendance ID")]
         public int AttendanceId { get; set; }
+        
+        [Display(Name = "Employee ID")]
         public int EmployeeId { get; set; }
         public Employee Employee { get; set; }
+
+        [Display(Name = "Time In")]
         public DateTime TimeIn { get; set; }
+
+        [Display(Name = "Time Out")]
         public DateTime TimeOut { get; set; }
+
+        [Display(Name = "Attendance Date")]
         public DateTime AttendanceDate { get; set; }
+
+        [Display(Name = "Shift ID")]
         public int ShiftId { get; set; }
         public Shift Shift { get; set; }
+
+        [Display(Name = "Approval Status")]
         public String ApprovalStatus { get; set; }
     }
 }

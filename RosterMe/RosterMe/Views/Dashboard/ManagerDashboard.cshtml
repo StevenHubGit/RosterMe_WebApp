@@ -180,7 +180,7 @@
                 //Define & store URL to Action in Controller
                 var action = 'Url.Action("InviteEmployeeToShift")';
                 var controllerAction = 'Url.Action("InviteEmployeeToShift", "Dashboard")';
-                var urlWithVariable = "/ShiftInvitations/InviteEmployee";
+                var urlWithVariable = "/Dashboard/InviteEmployeeToShift";
                 var urlToAction = urlWithVariable;
 
                 //Display message
@@ -200,6 +200,8 @@
                      * A string containing the URL to which the request is sent.
                      * */
                     url: urlToAction + "?employeeID=" + empId,
+                    //url: urlToAction,
+                    //url: urlToAction + "/" + empId,
 
                     /**
                      * Data: 
@@ -224,7 +226,7 @@
                      * 
                      * Note: Setting cache to false will only work correctly with HEAD and GET requests.
                      * */
-                    cache: false,
+                    cache: true,
 
                     /**
                      * Content Type: (Default: 'application/x-www-form-urlencoded; charset=UTF-8')
@@ -270,19 +272,30 @@
                         alert("Alright !" +
                             "\nThe POST is a success" +
                             "\n- Input data: " + empId +
-                            "\n- Data to pass: " + response.employeeID
+                            "\n- Data to pass: " + response.data
                         );
 
                         //Check if data to pass is not null
-                        if (response != null)
+                        if (response != null && response.result == 'Redirect')
                         {
+                            //Print message
+                            console.log("Manager Dashboard View message: Invite employee" +
+                                "\nThe employee ID to pass is not null" +
+                                "\n- Employee ID: " + empId
+                            );
+
                             //Display message
-                            alert("Great !" +
+                            alert("Okay !" +
                                 "\nThe data to pass is not null" +
-                                "\n- Data: " + response
+                                "\n- Data: " + response.data +
+                                "\n- Employee ID: " + empId +
+                                "\n\nRedirection to URL" +
+                                "\n- URL: " + response.url
                             );
 
                             //Redirect to page
+                            //location.href = urlToAction + "?employeeID=" + empId;
+                            window.location = response.url;
                         }
                     },
                     failure: function (response)

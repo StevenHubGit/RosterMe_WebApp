@@ -21,6 +21,7 @@ namespace RosterMe.Models.Entities
         public Login Login { get; set; }
 
         [Display(Name = "New Password")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public String NewPassword { get; set; }
 
         [DataType(DataType.Date)]
@@ -28,6 +29,7 @@ namespace RosterMe.Models.Entities
         public DateTime RequestDate { get; set; }
 
         [Display(Name = "Status")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public String Status { get; set; }
     }
 }

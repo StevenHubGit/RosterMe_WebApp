@@ -3,12 +3,16 @@
     //Set tab title
     ViewData["Title"] = "Invite Employee";
 
-    /* ---- Store View Data for Shift Invitation ---- */
-    var employeeInvitation = ViewData["EmployeeInvitation"] as RosterMe.Models.Entities.ShiftInvitation;
+    /* ---- Get, Check & Store View Datas for Shift Invitation ---- */
+    //Employee Invitation Information
+    var employeeInvitation = ViewData["EmployeeInvitationInfo"] 
+        as RosterMe.Models.Entities.ShiftInvitation;
+    //Existing Shifts
     List<RosterMe.Models.Entities.Shift> existingShifts =
         (List<RosterMe.Models.Entities.Shift>)ViewData["ExistingShifts"];
+    //Existing Employees
     List<RosterMe.Models.Entities.Employee> existingEmployees =
-        (List<RosterMe.Models.Entities.Employee>)ViewData["ExistingEmployees"];
+    (List<RosterMe.Models.Entities.Employee>)ViewData["ExistingEmployees"];
 }
 
 <!-- #### Employee Invitation: Title #### -->
@@ -26,40 +30,41 @@
             <input type="hidden" asp-for="InvitationId" />
             <div class="form-group">
                 <label class="control-label">
-                    @employeeInvitation.Employee.FirstName
-                    @employeeInvitation.Employee.LastName
+                    Existing Employee Selection
                 </label>
                 <select class="form-control">
-                    <option>
+                    <option style="font-style: italic; color: #808080;">
                         Select an employee...
                     </option>
                     @foreach (var employee in existingEmployees)
                     {
                         <option>
-                            @employee.FirstName @employee.LastName
+                            @employee.EmployeeId - @employee.FirstName @employee.LastName
                         </option>
                     }
                 </select>
-                <span asp-validation-for="@employeeInvitation.Employee.FirstName"
+                <span asp-validation-for="@employeeInvitation.Employee"
                       class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">
-                    @employeeInvitation.Shift.ShiftName
-                    @employeeInvitation.ShiftId
+                    Existing Shift Selection
                 </label>
                 <select class="form-control">
-                    <option>
+                    <option style="font-style: italic; color: #808080;">
                         Select Shift...
                     </option>
                     @foreach (var shift in existingShifts)
                     {
                         <option>
-                            @shift.ShiftId - @shift.ShiftName
+                            @shift.ShiftId - @shift.ShiftName: 
+                            @shift.StartTime.ToString("hh:mm") 
+                            to 
+                            @shift.FinishTime.ToString("hh:mm")
                         </option>
                     }
                 </select>
-                <span asp-validation-for="@employeeInvitation.Shift.ShiftName" class="text-danger"></span>
+                <span asp-validation-for="@employeeInvitation.Shift" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="InvitationStatus" class="control-label"></label>
@@ -78,7 +83,7 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default"
-                       style="background: #0066ff;" />
+                       style="background: #0066ff; color: #f2f2f2; font-size: 14px;" />
             </div>
         </form>
     </div>

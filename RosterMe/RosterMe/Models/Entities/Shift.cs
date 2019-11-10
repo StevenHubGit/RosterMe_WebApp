@@ -14,16 +14,20 @@ namespace RosterMe.Models.Entities
         //Class attributes
         public int ShiftId { get; set; }
 
+        [Display(Name = "Shift Name")]
         [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public String ShiftName { get; set; }
 
+        [Display(Name = "Start Time")]
         [DataType(DataType.Time)]
         public DateTime StartTime { get; set; }
 
+        [Display(Name = "Finish Time")]
         [DataType(DataType.Time)]
         public DateTime FinishTime { get; set; }
 
+        [Display(Name = "Shift Created Date")]
         [DataType(DataType.Date)]
-        public DateTime ShftCreatedDate { get; set; }
+        public DateTime ShiftCreatedDate { get; set; }
     }
 }

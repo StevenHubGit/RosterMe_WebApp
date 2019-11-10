@@ -172,33 +172,50 @@ namespace RosterMe.Controllers.EntitiesControllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost]
-        //[Route("~/Views/Dashboard/InviteEmployee/{empId}")]
-        public async Task<IActionResult> InviteEmployee(int? employeeID)
+        [HttpGet]
+        //[Route("~/Views/Dashboard/InviteEmployee?employeeID=empId")]
+        public async Task<ActionResult> InviteEmployee(int? empID)
         {
-            //Check if current model is valid
-            if (ModelState.IsValid)
+            //Check if input is not null
+            if(empID != null)
             {
-                //
-                if(employeeID != null)
-                {
-                    //Print message
-                    return Content("\n" + LOG_TAG + ": Alright !" +
-                        "\nThe data have been passed" +
-                        "\n- Data: " + employeeID
-                    );
-                }
-                else
-                {
-                    //Print message
-                    return Content(LOG_TAG + ": Wait..." +
-                        "\nThe data have not been passed"
-                    );
-                }
-            }
+                //Set query to retrieve all employee information & store result
+                //Employee Invitation Information
+                var employeeInvitationInfo = await _context.ShiftInvitation
+                    .Include(sI => sI.Employee)
+                    .Include(sI => sI.Shift)
+                    .Where(sI => sI.EmployeeId == empID)
+                    .FirstOrDefaultAsync();
+                //Existing Shifts
+                var existingShifts = await _context.Shift
+                    .ToListAsync();
+                //Existing Employees
+                var existingEmployees = await _context.Employees
+                    .ToListAsync();
 
-            //Return View
-            return View("~/Views/ShiftInvitations/Edit.cshtml");
+                //Store query result in View Data
+                ViewData["EmployeeInvitationInfo"] = employeeInvitationInfo;
+                ViewData["ExistingShifts"] = existingShifts;
+                ViewData["ExistingEmployees"] = existingEmployees;
+
+                //Redirect to View
+                return View("~/Views/ShiftInvitations/InviteEmployee.cshtml");
+
+                //Print message
+                return Content(LOG_TAG + ": Okay !" +
+                    "\nThe Invite Employee function is reached" +
+                    "\nThe input data is not null" +
+                    "\n- Data: " + empID
+                );
+            }
+            else
+            {
+                //Print message
+                return Content(LOG_TAG + ": Okay !" +
+                    "\nThe Invite Employee function is reached" +
+                    "\nThe input data is null"
+                );
+            }
         }
 
         private bool ShiftInvitationExists(int id)

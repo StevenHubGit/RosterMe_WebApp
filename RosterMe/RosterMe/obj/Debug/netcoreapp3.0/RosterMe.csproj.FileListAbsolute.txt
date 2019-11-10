@@ -199,9 +199,9 @@ C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_We
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\RosterMe.csproj.CopyComplete
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\RosterMe.dll
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\RosterMe.pdb
-C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\RosterMe.csprojAssemblyReference.cache
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\Razor\Views\ShiftInvitations\InviteEmployee.cshtml.g.cs
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\bin\Debug\netcoreapp3.0\Newtonsoft.Json.Bson.dll
+C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\RosterMe.csprojAssemblyReference.cache
 C:\Users\Aspire2 Student\Desktop\Projects\Assigments\Web Programming\RosterMe_WebApp\RosterMe\RosterMe\obj\Debug\netcoreapp3.0\RosterMe.MvcApplicationPartsAssemblyInfo.cache

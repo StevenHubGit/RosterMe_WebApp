@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using RosterMe.Classes;
 using RosterMe.Data;
@@ -341,23 +342,35 @@ namespace RosterMe.Controllers
         /* ---------- Redirections ---------- */
         /* ---- Redirect: Shift Invitations ---- */
         [HttpPost]
-        //[Authorize]
-        //[Route("Dashboard/InviteEmployeeToShift/{id}")]
-        public IActionResult InviteEmployeeToShift(int? empId)
+        public ActionResult InviteEmployeeToShift(int? employeeID)
         {
-            //Return View
-            /*
-            return new JsonResult(LOG_TAG + ": Invite Employee To Shift function" +
-                "\nThis is a JSON Result return" +
-                "\n- Data to pass: " + empId
-            );
-            */
-            /*
-            return Content(LOG_TAG + ": Invite Employee To Shift method" +
-                "\nThe invited employee ID is " + empId
-            );
-            */
-            return RedirectToAction("InviteEmployee", "ShiftInvitations", new { id = empId});
+            //Check if input is not null
+            if(employeeID != null)
+            {
+                //Redirect using Json
+                return Json(new 
+                { 
+                    result = "Redirect", 
+                    url = Url.Action("InviteEmployee", "ShiftInvitations", new { empID = employeeID}) 
+                });
+
+                /*
+                //Print message
+                return Json(LOG_TAG + ": Alright !" +
+                    "\nThe Invite Employee To Shift function is reached" +
+                    "\nThe data passed by Ajax is not null" +
+                    "\n- Data: " + employeeID
+                );
+                */
+            }
+            else
+            {
+                //Print message
+                return Json(LOG_TAG + ": Alright !" +
+                    "\nThe Invite Employee To Shift function is reached" +
+                    "\nThe data passed by Ajax is null"
+                );
+            }
         }
     }
 }

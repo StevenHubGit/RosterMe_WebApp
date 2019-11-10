@@ -15,10 +15,14 @@ namespace RosterMe.Models.Entities
         public int EmployeeId { get; set; }
 
         [Display(Name = "First Name")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public String FirstName { get; set; }
 
         [Display(Name = "Last Name")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public String LastName { get; set; }
+
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public String Gender { get; set; }
 
         [Display(Name = "Profile Picture")]
@@ -31,9 +35,12 @@ namespace RosterMe.Models.Entities
         [Display(Name = "Joining Date")]
         [DataType(DataType.Date)]
         public DateTime JoiningDate { get; set; }
+
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public String Position { get; set; }
 
         [Display(Name = "User Role")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public String UserRole { get; set; }
 
         [Display(Name = "Phone Number")]
@@ -42,6 +49,8 @@ namespace RosterMe.Models.Entities
 
         [DataType(DataType.EmailAddress)]
         public String Email { get; set; }
+
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public String Contract { get; set; }
 
         [Display(Name = "Reporting Manager ID")]

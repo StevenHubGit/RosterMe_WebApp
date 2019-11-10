@@ -351,7 +351,7 @@ namespace RosterMe.Controllers
                 return Json(new 
                 { 
                     result = "Redirect", 
-                    url = Url.Action("InviteEmployee", "ShiftInvitations", new { empID = employeeID}) 
+                    url = Url.Action("EmployeeInvitation", "ShiftInvitations", new { empID = employeeID}) 
                 });
 
                 /*

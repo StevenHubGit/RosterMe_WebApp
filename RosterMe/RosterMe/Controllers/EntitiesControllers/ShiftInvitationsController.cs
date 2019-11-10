@@ -105,6 +105,54 @@ namespace RosterMe.Controllers.EntitiesControllers
             return View(shiftInvitation);
         }
 
+        [HttpGet]
+        //[Route("~/Views/Dashboard/InviteEmployee?employeeID=empId")]
+        public async Task<ActionResult> EmployeeInvitation(int? empID)
+        {
+            //Check if input is not null
+            if (empID != null)
+            {
+                //Set query to retrieve all employee information & store result
+                //Employee Invitation Information
+                var employeeInvitationInfo = await _context.ShiftInvitation
+                    .Include(sI => sI.Employee)
+                    .Include(sI => sI.Shift)
+                    .Where(sI => sI.EmployeeId == empID)
+                    .FirstOrDefaultAsync();
+                //Existing Shifts
+                var existingShifts = await _context.Shift
+                    .ToListAsync();
+                //Existing Employees
+                var existingEmployees = await _context.Employees
+                    .ToListAsync();
+
+                //Store query result in View Data
+                ViewData["EmployeeInvitationInfo"] = employeeInvitationInfo;
+                ViewData["ExistingShifts"] = existingShifts;
+                ViewData["ExistingEmployees"] = existingEmployees;
+
+                //Redirect to View
+                return View("~/Views/ShiftInvitations/InviteEmployee.cshtml");
+
+                /*
+                //Print message
+                return Content(LOG_TAG + ": Okay !" +
+                    "\nThe Invite Employee function is reached" +
+                    "\nThe input data is not null" +
+                    "\n- Data: " + empID
+                );
+                */
+            }
+            else
+            {
+                //Print message
+                return Content(LOG_TAG + ": Okay !" +
+                    "\nThe Invite Employee function is reached" +
+                    "\nThe input data is null"
+                );
+            }
+        }
+
         /* ---------- HTTP POST Methods ---------- */
         // POST: ShiftInvitations/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -172,50 +220,12 @@ namespace RosterMe.Controllers.EntitiesControllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpGet]
-        //[Route("~/Views/Dashboard/InviteEmployee?employeeID=empId")]
-        public async Task<ActionResult> InviteEmployee(int? empID)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> InviteEmployee(int empID)
         {
-            //Check if input is not null
-            if(empID != null)
-            {
-                //Set query to retrieve all employee information & store result
-                //Employee Invitation Information
-                var employeeInvitationInfo = await _context.ShiftInvitation
-                    .Include(sI => sI.Employee)
-                    .Include(sI => sI.Shift)
-                    .Where(sI => sI.EmployeeId == empID)
-                    .FirstOrDefaultAsync();
-                //Existing Shifts
-                var existingShifts = await _context.Shift
-                    .ToListAsync();
-                //Existing Employees
-                var existingEmployees = await _context.Employees
-                    .ToListAsync();
-
-                //Store query result in View Data
-                ViewData["EmployeeInvitationInfo"] = employeeInvitationInfo;
-                ViewData["ExistingShifts"] = existingShifts;
-                ViewData["ExistingEmployees"] = existingEmployees;
-
-                //Redirect to View
-                return View("~/Views/ShiftInvitations/InviteEmployee.cshtml");
-
-                //Print message
-                return Content(LOG_TAG + ": Okay !" +
-                    "\nThe Invite Employee function is reached" +
-                    "\nThe input data is not null" +
-                    "\n- Data: " + empID
-                );
-            }
-            else
-            {
-                //Print message
-                return Content(LOG_TAG + ": Okay !" +
-                    "\nThe Invite Employee function is reached" +
-                    "\nThe input data is null"
-                );
-            }
+            //Return View
+            return RedirectToAction(nameof(Index));
         }
 
         private bool ShiftInvitationExists(int id)

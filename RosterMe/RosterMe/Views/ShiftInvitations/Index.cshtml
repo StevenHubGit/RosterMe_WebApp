@@ -1,6 +1,10 @@
 ﻿@model IEnumerable<RosterMe.Models.Entities.ShiftInvitation>
 
 @{
+    //Set Layout
+    Layout = "~/Views/Shared/_ShiftsLayout.cshtml";
+
+    //Set tab title
     ViewData["Title"] = "Shift Invitation";
 }
 
@@ -35,10 +39,11 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Employee.EmployeeId)
+                @Html.DisplayFor(modelItem => item.Employee.FirstName)
+                @Html.DisplayFor(modelItem => item.Employee.LastName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Shift.ShiftId)
+                @Html.DisplayFor(modelItem => item.Shift.ShiftName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.InvitationStatus)

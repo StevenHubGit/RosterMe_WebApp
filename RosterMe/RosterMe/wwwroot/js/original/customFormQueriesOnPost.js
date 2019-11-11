@@ -7,7 +7,7 @@
  * 
  * Note: Do not start a class attribute with a number. It may cause problems in some browsers.
  * */
-/* ---- JQuery & Ajax function: Retrieve employee ID and redirect to invitation view ---- */
+/* ---- JQuery & Ajax function: Retrieve employee ID & redirect to invitation view ---- */
 function EmployeeInvitation(empID, event)
 {
     /**

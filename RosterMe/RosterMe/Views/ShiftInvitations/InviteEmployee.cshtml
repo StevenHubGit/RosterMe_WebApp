@@ -3,6 +3,9 @@
     //Set tab title
     ViewData["Title"] = "Invite Employee";
 
+    //Set Layout
+    Layout = "~/Views/Shared/_ShiftsLayout.cshtml";
+
     /* ---- Get, Check & Store View Datas for Shift Invitation ---- */
     //Employee Invitation Information
     var employeeInvitation = ViewData["EmployeeInvitationInfo"] 
@@ -13,6 +16,9 @@
     //Existing Employees
     List<RosterMe.Models.Entities.Employee> existingEmployees =
     (List<RosterMe.Models.Entities.Employee>)ViewData["ExistingEmployees"];
+    //ShiftInvitations
+    List<RosterMe.Models.Entities.ShiftInvitation> shiftInvitations =
+    (List<RosterMe.Models.Entities.ShiftInvitation>)ViewData["ShiftInvitations"];
 }
 
 <!-- #### Employee Invitation: Title #### -->
@@ -20,22 +26,35 @@
 <h2>Invite Employee to Shift</h2>
 
 <h4>Shift Invitation Form</h4>
+<h5>Invitation ID: </h5>
+<select class="form-control">
+    @foreach(var invitation in shiftInvitations)
+    {
+        <option>
+            @invitation.InvitationId: 
+            @invitation.Employee.FirstName @invitation.Employee.LastName - 
+            @invitation.ShiftId
+        </option>
+    }
+</select>
 <hr />
 
 <!-- #### Employee Invitation: Form #### -->
 <div class="row">
     <div class="col-md-4">
-        <form>
+        <form asp-action="InviteEmployee" asp-controller="ShiftInvitations">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="InvitationId" />
             <div class="form-group">
                 <label class="control-label">
                     Existing Employee Selection
                 </label>
-                <select class="form-control">
+                <select class="form-control" name="employeeName">
+                    <!--
                     <option style="font-style: italic; color: #808080;">
                         Select an employee...
                     </option>
+                    -->
                     @foreach (var employee in existingEmployees)
                     {
                         <option>
@@ -50,7 +69,7 @@
                 <label class="control-label">
                     Existing Shift Selection
                 </label>
-                <select class="form-control">
+                <select class="form-control" name="shiftName">
                     <option style="font-style: italic; color: #808080;">
                         Select Shift...
                     </option>
@@ -68,7 +87,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="InvitationStatus" class="control-label"></label>
-                <input asp-for="InvitationStatus" class="form-control" />
+                <input asp-for="InvitationStatus" class="form-control" placeholder="Enter a new status"/>
                 <span asp-validation-for="InvitationStatus" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -78,7 +97,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="NotificationStatus" class="control-label"></label>
-                <input asp-for="NotificationStatus" class="form-control" />
+                <input asp-for="NotificationStatus" class="form-control" placeholder="Enter a new status"/>
                 <span asp-validation-for="NotificationStatus" class="text-danger"></span>
             </div>
             <div class="form-group">

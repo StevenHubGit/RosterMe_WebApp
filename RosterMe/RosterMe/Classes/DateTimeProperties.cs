@@ -22,5 +22,26 @@ namespace RosterMe.Classes
             //Return integer
             return yearDifference;
         }
+
+        /* ---------- Conversions ---------- */
+        /* ---- Convert: From String to Date ---- */
+        public static DateTime convertStringToDate(String dateString)
+        {
+            //Create Date Time to return
+            DateTime convertedDate = DateTime.Parse(dateString);
+
+            //Return Date Time
+            return convertedDate;
+        }
+
+        /* ---- Convert: From Date to String ---- */
+        public static String convertDateToString(DateTime dateToConvert, String format)
+        {
+            //Create String to return
+            String convertedDate = dateToConvert.ToString(format);
+
+            //Return String
+            return convertedDate;
+        }
     }
 }

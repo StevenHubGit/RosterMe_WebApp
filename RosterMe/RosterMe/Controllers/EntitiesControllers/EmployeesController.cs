@@ -25,6 +25,75 @@ namespace RosterMe.Controllers.EntitiesControllers
         // GET: Employees
         public async Task<IActionResult> Index()
         {
+            //
+            var employees = await _context.Employees
+                .Include(emp => emp.Department)
+                .ToListAsync();
+
+            //
+            ViewData["EmployeesInDB"] = employees;
+
+            //
+            //return View(employees);
+            return View(await _context.Employees
+                //.Include(emp => emp.Department)
+                .ToListAsync());
+        }
+
+        //GET : Employees
+        public JsonResult EmployeesList()
+        {
+            var Employees = _context.Employees.Select(x => new
+            {
+                x.EmployeeId,
+                x.FirstName,
+                x.LastName//, x.Gender, x.DOB, x.Email,
+                //x.HourlySalary, x.JoiningDate, x.PhoneNumber, x.Position,
+                //x.ReportingManagerId,x.UserRole,x.ProfilePicture,x.DepartmentId,x.Contract
+            }).ToList();
+            return Json(Employees);
+        }
+
+        public JsonResult getDetails(int? id)
+        {
+            var employee = _context.Employees.Find(id);
+            var model = new RosterMe.Models.Entities.Employee
+            {
+                EmployeeId = employee.EmployeeId,
+                FirstName = employee.FirstName,
+                LastName = employee.LastName,
+                Gender = employee.Gender,
+                DOB = employee.DOB,
+                HourlySalary = employee.HourlySalary,
+                JoiningDate = employee.JoiningDate,
+                PhoneNumber = employee.PhoneNumber,
+                Position = employee.Position,
+                ReportingManagerId = employee.ReportingManagerId,
+                DepartmentId = employee.DepartmentId,
+                UserRole = employee.UserRole,
+                Contract = employee.Contract,
+                Email = employee.Email,
+                ProfilePicture = employee.ProfilePicture
+            };
+            return Json(model);
+        }
+
+        public ActionResult List(string userRole)
+        {
+            if (userRole == "Admin")
+            {
+                return Json("/Employees/AdminListOfEmployees");
+            }
+
+            else if (userRole == "Manager")
+            {
+                return Json("/Employees/Index");
+            }
+            return Json("/Employees/Index");
+        }
+
+        public async Task<IActionResult> AdminListOfEmployees()
+        {
             return View(await _context.Employees.ToListAsync());
         }
 

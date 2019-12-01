@@ -1,0 +1,69 @@
+﻿@*@model RosterMe.Models.Entities.Timesheets*@
+@{
+    //
+    ViewData["Title"] = "Timesheets";
+}
+
+<!-- #### Management Content #### -->
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+<!-- #### Head #### -->
+<partial name="~/Views/PartialViews/_HeadLayout.cshtml" />
+
+<body data-spy="scroll" data-target=".mainmenu-area">
+
+    <!-- ########## Pre Loader: Content ########## -->
+    <partial name="~/Views/PartialViews/_PreLoaderLayout.cshtml" />
+
+    <!-- ########## Menu: Content ########## -->
+    <partial name="~/Views/PartialViews/_MenuLayout.cshtml" />
+
+    <!-- ########## Header: Content ########## -->
+    <!--Header-Area-->
+    <header class="header-area overlay" id="home-area">
+        <div class="vcenter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-10 col-md-8">
+                        <div class="header-text">
+                            <h2 class="header-title wow fadeInUp">
+                                Timesheets
+                                <span class="dot"></span>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--Header-Area-/-->
+    <!-- ########## Body: Content ########## -->
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- ########## Footer: Template ########## -->
+    <partial name="~/Views/PartialViews/_FooterLayout.cshtml" />
+
+    <!-- ########## Footer: Original ########## -->
+    <!--
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2019 - Polynesians - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    -->
+    <!-- ########## Scripts: Template ########## -->
+    <partial name="~/Views/PartialViews/_ScriptsLayout.cshtml" />
+
+    <!-- ########## Scripts: Original ########## -->
+    <!--
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    RenderSection("Scripts", required: false)
+    -->
+</body>
+</html>

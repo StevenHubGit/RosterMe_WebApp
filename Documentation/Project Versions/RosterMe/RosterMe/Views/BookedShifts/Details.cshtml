@@ -1,0 +1,36 @@
+﻿@model RosterMe.Models.Entities.BookedShifts
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BookedShifts</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Shift)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Shift.ShiftId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Employee.EmployeeId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BookedTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BookedTime)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.BookingId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -33,11 +33,11 @@ namespace RosterMe.Controllers
         /* ---------- HTTP GET Methods ---------- */
         /* ---- GET Method: Index ---- */
         [HttpGet]
-        [Route("Dashboard/Index/{employeeID}")]
+        //[Route("Dashboard/Index/{employeeID}")]
         public async Task<IActionResult> Index(int employeeID)
         {
             //Return Index View
-            return View("~/Views/Dashboard/Index.cshtml");
+            return View();
         }
 
         /* ---------- Dashboards ---------- */
@@ -143,8 +143,9 @@ namespace RosterMe.Controllers
         {
             //Set & store query
             var employeeDetails = await _rosterMeContext.Employees
+                .Include(emp => emp.Department)
                 .Where(emp => emp.EmployeeId == employeeID)
-                .OrderBy(emp => emp.FirstName)
+                //.OrderBy(emp => emp.FirstName)
                 .ToListAsync();
             var employeeBookedShifts = await _rosterMeContext.BookedShifts
                 .Include(bS => bS.Employee)
@@ -159,6 +160,7 @@ namespace RosterMe.Controllers
                 .ToListAsync();
             var loggedInEmployees = await _rosterMeContext.LoginTrail
                 .Include(lT => lT.LogIn)
+                //.GroupBy(lT => lT.LogIn.Username)
                 .OrderBy(lT => lT.LogIn.Username)
                 .Take(5)
                 .ToListAsync();
@@ -187,7 +189,8 @@ namespace RosterMe.Controllers
                     "\n- Position: " + employeeDetails[i].Position +
                     "\n- Role: " + employeeDetails[i].UserRole +
                     "\n- Reporting Manager ID: " + employeeDetails[i].ReportingManagerId +
-                    "\n- Department ID: " + employeeDetails[i].DepartmentId
+                    "\n- Department ID: " + employeeDetails[i].DepartmentId +
+                    "\n- Department Name: " + employeeDetails[i].Department.DeptName
                     + "\n";
 
                 //Store data
@@ -249,13 +252,13 @@ namespace RosterMe.Controllers
             var employeeBookedShifts = await _rosterMeContext.BookedShifts
                 .Include(bS => bS.Employee)
                 .Include(bS => bS.Shift)
-                //.Where(bS => bS.EmployeeId == employeeID)
+                .Where(bS => bS.EmployeeId == employeeID)
                 .OrderBy(bS => bS.Employee.LastName)
                 .Take(5)
                 .ToListAsync();
             var employeeAvailabilities = await _rosterMeContext.Availability
                 .Include(avail => avail.Employee)
-                //.Where(avail => avail.EmployeeId == employeeID)
+                .Where(avail => avail.EmployeeId == employeeID)
                 .OrderBy(avail => avail.AvailableDate)
                 .Take(5)
                 .ToListAsync();

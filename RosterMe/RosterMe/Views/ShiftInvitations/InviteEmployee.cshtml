@@ -31,9 +31,9 @@
     @foreach(var invitation in shiftInvitations)
     {
         <option>
-            @invitation.InvitationId: 
+            Invitation: @invitation.InvitationId: 
             @invitation.Employee.FirstName @invitation.Employee.LastName - 
-            @invitation.ShiftId
+            Shift: @invitation.ShiftId
         </option>
     }
 </select>
@@ -41,11 +41,11 @@
 
 <!-- #### Employee Invitation: Form #### -->
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="InviteEmployee" asp-controller="ShiftInvitations">
+    <form asp-action="InviteEmployee" asp-controller="ShiftInvitations">
+        <div id="column" style="margin: 3px 15px 8px 0px; float: left;">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="InvitationId" />
-            <div class="form-group">
+            <div style="margin: 15px 0px 15px 0px;">
                 <label class="control-label">
                     Existing Employee Selection
                 </label>
@@ -58,52 +58,78 @@
                     @foreach (var employee in existingEmployees)
                     {
                         <option>
-                            @employee.EmployeeId - @employee.FirstName @employee.LastName
+                            Employee: @employee.EmployeeId - @employee.FirstName @employee.LastName
                         </option>
                     }
                 </select>
                 <span asp-validation-for="@employeeInvitation.Employee"
                       class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div style="margin: 15px 0px 15px 0px;">
                 <label class="control-label">
                     Existing Shift Selection
                 </label>
                 <select class="form-control" name="shiftName">
-                    <option style="font-style: italic; color: #808080;">
+                    <option style="font-style: italic; color: #808080;" selected="selected">
                         Select Shift...
                     </option>
                     @foreach (var shift in existingShifts)
                     {
                         <option>
-                            @shift.ShiftId - @shift.ShiftName: 
-                            @shift.StartTime.ToString("hh:mm") 
-                            to 
+                            Shift: @shift.ShiftId - @shift.ShiftName:
+                            @shift.StartTime.ToString("hh:mm")
+                            to
                             @shift.FinishTime.ToString("hh:mm")
                         </option>
                     }
                 </select>
                 <span asp-validation-for="@employeeInvitation.Shift" class="text-danger"></span>
             </div>
-            <div class="form-group">
+        </div>
+        <div id="column" style="margin: 8px 15px 8px 15px; float: left;">
+            <div style="margin: 15px 0px 15px 0px;">
                 <label asp-for="InvitationStatus" class="control-label"></label>
-                <input asp-for="InvitationStatus" class="form-control" placeholder="Enter a new status"/>
+                <!--<input asp-for="InvitationStatus" class="form-control" placeholder="Enter a new status" />-->
+                <select class="form-control" name="InvitationStatus">
+                    <option style="color: #808080; font-style: italic;" selected="selected">
+                        Select a status...
+                    </option>
+                    <option>
+                        Pending
+                    </option>
+                    <option>
+                        Invited
+                    </option>
+                    <option>
+                        Declined
+                    </option>
+                </select>
                 <span asp-validation-for="InvitationStatus" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div style="margin: 15px 0px 15px 0px; width: 250px;">
                 <label asp-for="InvitationDate" class="control-label"></label>
                 <input asp-for="InvitationDate" class="form-control" />
                 <span asp-validation-for="InvitationDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
+        </div>
+        <div id="column" style="margin: 8px 15px 8px 15px; float: left;">
+            <div style="margin: 15px 0px 15px 0px;">
                 <label asp-for="NotificationStatus" class="control-label"></label>
-                <input asp-for="NotificationStatus" class="form-control" placeholder="Enter a new status"/>
+                <input asp-for="NotificationStatus" class="form-control" placeholder="Enter a new status" />
                 <span asp-validation-for="NotificationStatus" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div style="margin: 50px 0px 15px 0px; text-align: center;">
                 <input type="submit" value="Save" class="btn btn-default"
-                       style="background: #0066ff; color: #f2f2f2; font-size: 14px;" />
+                       style="background: #0066ff; color: #f2f2f2; font-size: 18px;" />
             </div>
-        </form>
-    </div>
+        </div>
+        <!--
+        <div id="column" style="margin: 8px 15px 8px 15px; float: left;">
+            <div>
+                <input type="submit" value="Save" class="btn btn-default"
+                       style="background: #0066ff; color: #f2f2f2; font-size: 22px;" />
+            </div>
+        </div>
+        -->
+    </form>
 </div>

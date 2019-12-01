@@ -1,0 +1,164 @@
+﻿@model IEnumerable<RosterMe.Models.Entities.Employee>
+@{
+    ViewData["Title"] = "AdminListOfEmployees";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<h1>Employees List</h1>
+
+@*<script src="~/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/wwwroot/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/wwwroot/lib/jquery/dist/jquery.js"></script>*@
+
+<table id="employees" border="1">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>Email Id</th>
+            <th>User Role</th>
+            <th>Phone Number</th>
+            <th>Contract</th>
+            <th>DOB</th>
+            <th>Joining Date</th>
+            <th>Reporting Manager Id</th>
+            <th>Department Id</th>
+            <th>Hourly Salary</th>
+            <th>Position</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td onclick="getEmployeeById(@item.EmployeeId)">@Html.DisplayFor(modelItem => item.FirstName)</td>
+                <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Gender)</td>
+                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                <td>@Html.DisplayFor(modelItem => item.UserRole)</td>
+                <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.Contract)</td>
+                <td>@Html.DisplayFor(modelItem => item.DOB)</td>
+                <td>@Html.DisplayFor(modelItem => item.JoiningDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.ReportingManagerId)</td>
+                <td>@Html.DisplayFor(modelItem => item.DepartmentId)</td>
+                <td>@Html.DisplayFor(modelItem => item.HourlySalary)</td>
+                <td>@Html.DisplayFor(modelItem => item.Position)</td>
+                <td>
+                    <button class="btn btn-success">Invite</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="modal fade-in" id="DisplayDetails" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" class="close"></button>
+                <h4 class="modal-title"><label>Employee Details</label></h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-5">
+                    <label>First Name</label>
+                    <input disabled type="text" name="firstName" id="firstName" />
+                </div>
+                <div class="col-md-5">
+                    <label> Last Name</label>
+                    <input disabled type="text" name="lastName" id="lastName" />
+                </div>
+                <div class="col-md-5">
+                    <label> Gender</label>
+                    <input disabled type="text" name="gender" id="gender" />
+                </div>
+                <div class="col-md-5">
+                    <label> Email</label>
+                    <input disabled type="text" name="email" id="email" />
+                </div>
+                <div class="col-md-5">
+                    <label> User Role</label>
+                    <input disabled type="text" name="role" id="role" />
+                </div>
+                <div class="col-md-5">
+                    <label> Phone Number</label>
+                    <input disabled type="text" name="phNo" id="phNo" />
+                </div>
+                <div class="col-md-5">
+                    <label> Contract</label>
+                    <input disabled type="text" name="contract" id="contract" />
+                </div>
+                <div class="col-md-5">
+                    <label> DOB</label>
+                    <input disabled type="text" name="dob" id="dob" />
+                </div>
+                <div class="col-md-5">
+                    <label> Joining Date</label>
+                    <input disabled type="text" name="joiningDate" id="joiningDate" />
+                </div>
+                <div class="col-md-5">
+                    <label> Reporting Manager</label>
+                    <input disabled type="text" name="managerId" id="managerId" />
+                </div>
+                <div class="col-md-5">
+                    <label> Department</label>
+                    <input disabled type="text" name="deptId" id="deptId" />
+                </div>
+                <div class="col-md-5">
+                    <label> Hourly Salary</label>
+                    <input disabled type="text" name="salary" id="salary" />
+                </div>
+                <div class="col-md-5">
+                    <label> Position</label>
+                    <input disabled type="text" name="position" id="position" />
+                </div>
+                <div class="col-md-5">
+                    <i src="" id="PP" name="PP"></i>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    th {
+        color: rebeccapurple;
+        padding: 10px 10px 10px 10px;
+        font-family: Arial;
+        font-style: italic;
+        background-color: aqua;
+    }
+
+    td {
+        color: rebeccapurple;
+        padding: 10px 10px 10px 10px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-style: italic;
+        background-color: lightblue;
+    }
+
+    .modal-content {
+        background-color: mediumaquamarine;
+    }
+
+    input {
+        border: none;
+        font-size: 25px;
+        font-family: 'Monotype Corsiva';
+    }
+
+    label {
+        font-family: 'Monotype Corsiva';
+        font-size: 20px;
+        color: saddlebrown;
+    }
+</style>
+@section scripts{
+    <script src="~/MyJavascriptFiles/Employees.js"></script>
+}
+

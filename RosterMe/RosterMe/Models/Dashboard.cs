@@ -13,6 +13,7 @@ namespace RosterMe.Models
 
         //Class attributes
         public IEnumerable<Employee> Employees { get; set; }
+        public IEnumerable<Department> Departments { get; set; }
         public IEnumerable<Login> Logins { get; set; }
         public IEnumerable<LoginTrail> LoginTrails { get; set; }
         public IEnumerable<BookedShifts> BookedShifts { get; set; }

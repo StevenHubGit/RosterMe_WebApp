@@ -10,6 +10,8 @@ using System;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using System.Net.Mail;
+using System.Net;
 
 namespace RosterMe
 {
@@ -28,8 +30,21 @@ namespace RosterMe
             //
             services.AddControllersWithViews();
 
-            //
-            //services.AddSingleton<IConfiguration>(Configuration);
+            //Add SMTP service
+            services.AddScoped<SmtpClient>((serviceProvider) =>
+            {
+                var config = serviceProvider.GetRequiredService<IConfiguration>();
+                return new SmtpClient()
+                {
+                    Host = config.GetValue<String>("Email:Smtp:Host"),
+                    Port = config.GetValue<int>("Email:Smtp:Port"),
+                    Credentials = new NetworkCredential
+                    (
+                        config.GetValue<String>("Email:Smtp:Username"),
+                        config.GetValue<String>("Email:Smtp:Password")
+                    )
+                };
+            });
 
             //Distribute Memory Cache Service
             services.AddDistributedMemoryCache();
@@ -38,10 +53,15 @@ namespace RosterMe
             services.AddDbContext<RosterMeContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("RosterMeDB")));
 
-            //Authentification Service (if needed)
-            services.AddSession(options => 
+            //Authentication Services
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
             {
+                // Set a short timeout for easy testing.
                 options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                // Make the session cookie essential
+                options.Cookie.IsEssential = true;
             });
 
             //MVC Services

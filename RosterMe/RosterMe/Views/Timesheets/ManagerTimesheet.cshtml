@@ -1,0 +1,113 @@
+﻿@model IEnumerable<RosterMe.Models.Entities.Timesheets>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<h1>Timesheet List</h1>
+
+@*<script src="~/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/wwwroot/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/wwwroot/lib/jquery/dist/jquery.js"></script>*@
+
+<table id="employees" border="1">
+    <thead>
+        <tr>
+            <th>Employee Id</th>
+            <th>Time-In</th>
+            <th>Time-Out</th>
+            <th>Attendance Date</th>
+            <th>Shift-Id/th>
+            <th>Approval Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td onclick="getTimesheetById(@item.AttendanceId)" data-toggle="modal" data-target="#DisplayDetails">@Html.DisplayFor(modelItem => item.EmployeeId)</td>
+            <td>@Html.DisplayFor(modelItem => item.TimeIn)</td>
+            <td>@Html.DisplayFor(modelItem => item.TimeOut)</td>
+            <td>@Html.DisplayFor(modelItem => item.AttendanceDate)</td>
+            <td>@Html.DisplayFor(modelItem => item.ShiftId)</td>
+            <td>@Html.DisplayFor(modelItem => item.ApprovalStatus)</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div class="modal fade-in" id="DisplayDetails" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" class="close"></button>
+                <h4 class="modal-title"><label>Timesheet Details</label></h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-5">
+                    <label>Attendance Id</label>
+                    <input disabled type="text" name="attendanceId" id="attendanceId" />
+                </div>
+                <div class="col-md-5">
+                    <label> Employee Id</label>
+                    <input disabled type="text" name="employeeId" id="employeeId" />
+                </div>
+                <div class="col-md-5">
+                    <label> Time-In</label>
+                    <input disabled type="text" name="timeIn" id="timeIn" />
+                </div>
+                <div class="col-md-5">
+                    <label> Time-Out</label>
+                    <input disabled type="text" name="timeOut" id="timeOut" />
+                </div>
+                <div class="col-md-5">
+                    <label> Attendance-Date</label>
+                    <input disabled type="text" name="attendanceDate" id="attendanceDate" />
+                </div>
+                <div class="col-md-5">
+                    <label> Approval-Status</label>
+                    <input disabled type="text" name="approvalStatus" id="approvalStatus" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    th {
+        color: rebeccapurple;
+        padding: 10px 10px 10px 10px;
+        font-family: Arial;
+        font-style: italic;
+        background-color: aqua;
+    }
+
+    td {
+        color: rebeccapurple;
+        padding: 10px 10px 10px 10px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-style: italic;
+        background-color: lightblue;
+    }
+
+    .modal-content{
+        background-color:mediumaquamarine;
+    }
+    input{
+        border:none;
+        font-size:25px;
+        font-family:'Monotype Corsiva';
+    }
+    label,option{
+        font-family:Verdana;
+        font-size:15px;
+        color:saddlebrown;
+    }
+    .col-md-4,.col-md-8{
+        padding-top:1em;
+    }
+</style>
+@section scripts{
+    <script src="~/MyJavascriptFiles/Timesheets.js"></script>
+}
+

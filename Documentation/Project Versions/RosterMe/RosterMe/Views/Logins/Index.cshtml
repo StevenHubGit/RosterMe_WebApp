@@ -1,0 +1,118 @@
+﻿@model RosterMe.Models.Entities.Login
+<!--model IEnumerable<RosterMe.Models.Entities.Login>-->
+@{
+    //Display Login Layout
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+
+    //Set View
+    ViewData["Title"] = "Login";
+}
+    <head>
+        <script src="~/js/template/login/vendor/jquery/jquery-3.2.1.min.js"></script>
+    </head>
+
+<!-- #### Login Form Sections #### -->
+<section>
+    <hr />
+    <h2 class="loginTitle"> Welcome to RosterMe </h2>
+    <hr />
+    <div id="row">
+        <!-- #### Column: Web App Logo #### -->
+        <div id="column">
+            <div id="loginAppLogo">
+                <img src="~/images/original/RosterMe_logo_400x400.png" />
+            </div>
+        </div>
+        <!-- #### Divider #### -->
+        <!--
+        <div id="loginHorizontalDivider">
+            <img src="~/images/original/maori_pattern_vertical_divider_icon.png" />
+        </div>
+        -->
+        <!-- #### Column: Form #### -->
+        <div id="column">
+            <div id="loginForm">
+                <form asp-controller="Logins" asp-action="LoginUser">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Username" />
+
+                    <div class="form-group">
+                        <label asp-for="Username" class="control-label"></label>
+                        <input asp-for="Username" class="form-control" />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6" id="loginButton">
+                            <input type="submit" value="Login" class="btn btn-primary" />
+                        </div>
+                        <div class="col-md-6">
+                            <div class="btn-link" style="text-decoration-line:underline;font-size:large;" data-toggle="modal" data-target="#forgotPassword">Forgot Password</div>
+                        </div>
+                    </div>
+
+
+                    <div id="loginOptions">
+                        <!-- #### Other Login Options #### -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* Forgot Password Modal *@
+
+<div class="modal fade-in" tabindex="-1" id="forgotPassword" name="forgotPassword" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Enter your Details</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">                    
+                    <div class="col-md-10">
+                        <input id="firstName" name="firstName" type="text" placeholder="Enter your first name"/>
+                    </div>
+                </div>
+                <div class="row">                    
+                    <div class="col-md-10">
+                        <input id="lastName" name="lastName" type="text" placeholder="Enter your last name"/>
+                    </div>
+                </div>
+                <div class="row">                    
+                    <div class="col-md-10">
+                        <input type="email" id="userEmail" name="userEmail" required placeholder="Enter email address"/>
+                    </div>
+                </div>                    
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="sendLink()">Send Link</button>
+                <button class="btn btn-danger" data-dismiss="modal" onclick="refreshLocation()">Close</button>
+            </div>
+        </div>        
+    </div>
+</div>
+<style>
+    .modal-content{
+        background-color:mediumaquamarine;
+    }
+    
+    input{
+       font-size:20px;
+    }
+    .row{
+       padding-top:1em;
+    }
+</style>
+
+
+@section scripts{ 
+    <script src="~/MyJavascriptFiles/ForgotPassword.js"></script>
+}

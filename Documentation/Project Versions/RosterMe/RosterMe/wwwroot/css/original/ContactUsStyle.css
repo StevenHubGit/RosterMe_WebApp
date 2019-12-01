@@ -1,0 +1,95 @@
+﻿
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.contact_form {
+    background-color: darkturquoise;
+    padding: 45px 45px 45px 124px;
+    border-radius: 39px;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.contact_details {
+    background-color: mintcream;
+    padding: 25px;
+    color: gray;
+    border-radius: 20px;
+    position: relative;
+    left: 108px;
+    z-index: 1;
+    top: 47px;
+    box-shadow: 2px 2px grey;
+}
+
+.contact_form h3 {
+    margin: 10px 0 30px 0;
+    color: #fff;
+}
+
+.contact_form input, .contact_form textarea {
+    border: 2px solid #fff;
+    line-height: normal;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 16px;
+    padding: 12px 25px;
+    color: #fff;
+    background: transparent;
+    outline: none;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    border-radius: 0;
+}
+
+.height50 {
+    height: 50px;
+}
+
+.height150 {
+    height: 150px;
+}
+
+.nopadding {
+    padding: 0px
+}
+
+.contact_form button {
+    padding: 7px 20px 7px 20px;
+    background-color: #fff;
+    border: none;
+    font-size: 16px;
+    color: #06bbd1;
+}
+
+.overlay_icon {
+    position: absolute;
+    width: 100px;
+    top: -38px;
+    right: 57px;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: unset;
+    transform: translate(0,-50%);
+}
+
+.contact_details {
+    width: 50%;
+    left: 43px;
+}
+
+.contact_form {
+    padding: 76px 45px 45px 45px;
+}
+
+.overlay_icon {
+    display: none;
+}

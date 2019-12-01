@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -150,6 +152,7 @@ namespace RosterMe.Controllers.EntitiesControllers
                 var shiftInvitations = await _context.ShiftInvitation
                     .Include(sI => sI.Employee)
                     .Include(sI => sI.Shift)
+                    .Where(sI => sI.EmployeeId == empID)
                     .ToListAsync();
 
                 //Store query result in View Data
@@ -294,10 +297,16 @@ namespace RosterMe.Controllers.EntitiesControllers
                     StringProperties.checkIfContainNumbers(shiftIDAsString) == true)
                 {
                     //Store number after check
+                    //Employee
+                    String employeeIDTitle = StringProperties.splitStringByCharacter(
+                        employeeIDAsString, " - ", 0);
                     employeeIDAsInt = Int32.Parse(StringProperties.splitStringByCharacter(
-                        employeeIDAsString, " ", 0));
+                        employeeIDTitle, ":", 1));
+                    //Shift
+                    String shiftIDTitle = StringProperties.splitStringByCharacter(
+                        shiftIDAsString, " - ", 0);
                     shiftIDAsInt = Int32.Parse(StringProperties.splitStringByCharacter(
-                        shiftIDAsString, " ", 0));
+                        shiftIDAsString, ":", 1));
                 }
 
                 //Query & store invitation ID
@@ -315,6 +324,7 @@ namespace RosterMe.Controllers.EntitiesControllers
                         //Check input invitation status
                         if(invitationStatus == "Invited")
                         {
+                            /*
                             //Set SQL queries for tables
                             //Shift Invitations
                             _context.Database.ExecuteSqlCommand(@"Update dbo.ShiftInvitation " +
@@ -337,6 +347,27 @@ namespace RosterMe.Controllers.EntitiesControllers
                                 "Values ({0}, {1}, CURRENT_TIMESTAMP);",
                                 shiftIDAsInt,
                                 employeeIDAsInt
+                            );
+                            */
+
+                            //
+                            var aboutEmployee = _context.Login
+                                .Include(log => log.Employee)
+                                .Where(log => log.EmployeeId == employeeIDAsInt)
+                                .ToList();
+                            var aboutShift = _context.ShiftInvitation
+                                .Include(sI => sI.Employee)
+                                .Include(sI => sI.Shift)
+                                .Where(sI => sI.EmployeeId == employeeIDAsInt)
+                                .ToList();
+
+                            //Call Send Email function & input data
+                            //EmailProperties.TEST_SendEmailToPerson();
+                            EmailProperties.sendEmailToInvitedEmployee(
+                                //aboutEmployee,
+                                aboutShift,
+                                "Shift Request",
+                                MailPriority.High
                             );
 
                             /*

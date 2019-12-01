@@ -1,53 +1,50 @@
 ﻿@model RosterMe.Models.Entities.Timesheets
 
 @{
-    //Set Layout
-    Layout = "~Views/Shared/_TimesheetsLayout.cshtml";
-
-    //Set tab title
+    Layout = "~/Views/Shared/_TimesheetsLayout.cshtml";
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h1>Details</h1>
 
 <div>
     <h4>Timesheets</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
+    <dl class="row">
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Employee)
         </dt>
-        <dd>
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Employee.EmployeeId)
         </dd>
-        <dt>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.TimeIn)
         </dt>
-        <dd>
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.TimeIn)
         </dd>
-        <dt>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.TimeOut)
         </dt>
-        <dd>
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.TimeOut)
         </dd>
-        <dt>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.AttendanceDate)
         </dt>
-        <dd>
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.AttendanceDate)
         </dd>
-        <dt>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Shift)
         </dt>
-        <dd>
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Shift.ShiftId)
         </dd>
-        <dt>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ApprovalStatus)
         </dt>
-        <dd>
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ApprovalStatus)
         </dd>
     </dl>

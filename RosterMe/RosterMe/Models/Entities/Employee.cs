@@ -58,6 +58,7 @@ namespace RosterMe.Models.Entities
 
         [Display(Name = "Department ID")]
         public int DepartmentId { get; set; }
+        public Department Department { get; set; }
 
         [Display(Name = "Hourly Salary")]
         [Column(TypeName = "decimal(18, 0)")]

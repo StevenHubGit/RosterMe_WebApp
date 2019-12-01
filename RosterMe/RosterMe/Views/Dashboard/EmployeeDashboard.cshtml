@@ -49,11 +49,11 @@
 <!-- Start: Shifts -->
 <section class="section-padding gray-bg">
     <div class="row">
-        <div class="column">
+        <div id="dashColumn" style="margin: 8px 15px 8px 15px;">
             <h2>
                 Confirmed Bookings
             </h2>
-            <table>
+            <table style="padding: 8px 15px 8px 15px; width: 350px;">
                 <thead>
                     <tr>
                         <th>
@@ -68,12 +68,12 @@
                     @for (int i = 0; i < employeeBookedShifts.Count(); i++)
                     {
                         <tr>
-                            <td>
+                            <td style="padding: 3px 8px 3px 3px;">
                                 @employeeBookedShifts[i].Employee.FirstName
                                 @employeeBookedShifts[i].Employee.LastName
                             </td>
-                            <td>
-                                @employeeBookedShifts[i].BookedTime
+                            <td style="padding: 3px 8px 3px 3px;">
+                                @employeeBookedShifts[i].BookedTime.ToString("dd/MM/yyyy hh:mm tt")
                             </td>
                         </tr>
                     }
@@ -81,11 +81,11 @@
             </table>
         </div>
 
-        <div class="column">
+        <div id="dashColumn" style="margin: 8px 15px 8px 15px;">
             <h2>
                 Week's Availabilities
             </h2>
-            <table>
+            <table  style="padding: 8px 15px 8px 15px; width: 500px;">
                 <thead>
                     <tr>
                         <th>
@@ -106,19 +106,19 @@
                     @for (int i = 0; i < employeeAvailabilities.Count(); i++)
                     {
                         <tr>
-                            <td>
+                            <td style="padding: 3px 8px 3px 3px;">
                                 @employeeAvailabilities[i].Employee.FirstName
                                 @employeeAvailabilities[i].Employee.LastName
                             </td>
-                            <td>
-                                <input type="datetime" />
+                            <td style="padding: 3px 8px 3px 3px;">
+                                <input type="date" placeholder="" name="employeeAvailabilityDate"/>
                             </td>
-                            <td>
-                                @employeeAvailabilities[i].AvailableDate
+                            <td style="padding: 3px 8px 3px 3px;">
+                                @employeeAvailabilities[i].AvailableDate.ToString("dd/MM/yyyy")
                             </td>
-                            <td>
-                                <a href="~/Views/ShiftInvitations/Index.cshtml">
-                                    Invite
+                            <td style="padding: 3px 8px 3px 3px;">
+                                <a href="~/Views/ShiftInvitations/Index.cshtml" style="color: #0066ff;">
+                                    Book Shift
                                 </a>
                             </td>
                         </tr>

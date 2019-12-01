@@ -1,0 +1,47 @@
+﻿@model IEnumerable<RosterMe.Models.Entities.LoginTrail>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LogIn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LogInTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LogOutTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LogIn.LoginId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LogInTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LogOutTime)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.LoginTrailId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.LoginTrailId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.LoginTrailId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

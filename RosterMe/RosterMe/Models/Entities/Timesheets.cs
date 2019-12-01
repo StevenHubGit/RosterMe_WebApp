@@ -21,10 +21,10 @@ namespace RosterMe.Models.Entities
         public Employee Employee { get; set; }
 
         [Display(Name = "Time In")]
-        public DateTime TimeIn { get; set; }
+        public TimeSpan TimeIn { get; set; }
 
         [Display(Name = "Time Out")]
-        public DateTime TimeOut { get; set; }
+        public TimeSpan TimeOut { get; set; }
 
         [Display(Name = "Attendance Date")]
         public DateTime AttendanceDate { get; set; }

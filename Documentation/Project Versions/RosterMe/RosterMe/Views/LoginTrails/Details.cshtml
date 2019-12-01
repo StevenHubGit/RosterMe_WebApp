@@ -1,0 +1,36 @@
+﻿@model RosterMe.Models.Entities.LoginTrail
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LoginTrail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LogIn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LogIn.LoginId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LogInTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LogInTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LogOutTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LogOutTime)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.LoginTrailId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

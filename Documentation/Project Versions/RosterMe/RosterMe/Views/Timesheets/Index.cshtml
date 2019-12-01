@@ -1,0 +1,180 @@
+﻿@model IEnumerable<RosterMe.Models.Entities.Timesheets>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_TimesheetManagementLayout.cshtml";
+}
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <div class="panel">
+        <section>
+            <div class="col-md-offset-1">
+                <div class="title">Timesheets</div>
+            </div>
+            <div class="col-lg-offset-1" style="padding-top:2em;">
+                <button data-toggle="modal" onclick="hideUpdateBtn($('#empId').val())" data-target="#AddUpdate" class="btn btn-success"><i class="fa fa-plus"></i></button>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Employee Id</th>
+                            <th>Shift Id</th>
+                            <th>Time-In</th>
+                            <th>Time-Out</th>
+                            <th>Attendanded Date</th>
+                            <th>Approved Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model)
+                         {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem=>item.EmployeeId)</td>
+                                <td>@Html.DisplayFor(modelItem=>item.ShiftId)</td>
+                                <td>@Html.DisplayFor(modelItem=>item.TimeIn)</td>
+                                <td>@Html.DisplayFor(modelItem=>item.TimeOut)</td>
+                                <td>@Html.DisplayFor(modelItem=>item.AttendanceDate)</td>
+                                <td>@Html.DisplayFor(modelItem=>item.ApprovalStatus)</td>
+                                <td>
+                                    <button class="btn btn-warning" data-toggle="modal" data-target="#AddUpdate" onclick="getTimesheetById(@item.AttendanceId)"><i class="fa fa-edit"></i></button>
+                                    <button class="btn btn-danger" onclick="deleteRecords(@item.AttendanceId)"><i class="fa fa-cut"></i></button>
+                                    <input id="empId" name="empId" value=@item.EmployeeId hidden />
+                                </td>
+
+                            </tr>                           
+                         }
+                        
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+@*Modal to add and update Timesheets*@
+
+<div class="modal fade-in" id="AddUpdate" name="AddUpdate" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <h2 style="color:sienna;">Add Data</h2>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <input type="text" id="attendanceId" name="attendanceId" style="visibility:hidden;" />
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Employee Id</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" id="employeeId" name="employeeId" required />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Shift Id</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" id="shiftId" name="shiftId" required />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Time-In</label>
+                        </div>
+                        <div class="col-md-8">
+
+                            <input type="time" id="timeIn" name="timeIn" required />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Time-Out</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="time" id="timeOut" name="timeOut" required />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Attendance Date</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="datetime" id="attendanceDate" name="attendanceDate" required />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Approved Status</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select id="approvalStatus" name="approvalStatus">
+                                <option value="Select Status">Select Status</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Approved">Approved</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+            <div class="modal-footer">
+                <div class="btn btn-success" id="add" name="add" onclick="addRecords()">Add</div>
+                <div class="btn btn-warning" id="update" name="update" onclick="updateRecords()">Update</div>
+                <button class="btn btn-danger" onclick="closeModal()" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>    
+</div>
+
+
+<style>
+    .title{
+        font-family:Verdana;
+        font-size:40px;
+        color:burlywood;
+    }
+    .panel {
+        padding: 40px 40px 40px 40px;
+        background: url("/images/gettyimages-181957570.jpg");
+    }
+    th {
+        color: rebeccapurple;
+        padding: 10px 10px 10px 10px;
+        font-family: Arial;
+        font-style: italic;
+        background-color: aqua;
+    }
+
+    td {
+        color: rebeccapurple;
+        padding: 5px 10px 5px 10px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-style: italic;
+        background-color: lightblue;
+    }    
+    .modal-content{
+        background-color:mediumaquamarine;
+    }
+    input{
+        border:none;
+        font-size:25px;
+        font-family:'Monotype Corsiva';
+    }
+    label,option{
+        font-family:Verdana;
+        font-size:15px;
+        color:saddlebrown;
+    }
+    .col-md-4,.col-md-8{
+        padding-top:1em;
+    }
+    
+</style>
+
+@section scripts{ 
+    <script src="~/MyJavascriptFiles/Timesheets.js"></script>
+}

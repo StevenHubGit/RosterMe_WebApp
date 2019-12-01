@@ -1,4 +1,21 @@
-﻿<!-- Mainmenu-Area -->
+﻿
+@{
+    //Print message
+    Console.WriteLine("Okay !" +
+        "\nThe Menu Layout is initiated"
+    );
+
+    //Check if List is not null
+    if (ViewData["UserInfoList"] != null)
+    {
+        //Print message
+        Console.WriteLine("Okay !" +
+            "\nThe User Info List in View Data is not null" +
+            "\n- Type: " + ViewData["UserInfoList"].GetType()
+        );
+    }
+}
+<!-- Mainmenu-Area -->
 <nav class="navbar mainmenu-area" data-spy="affix" data-offset-top="197">
     <div class="container">
         <div class="row">
@@ -25,15 +42,15 @@
 
                         <!-- #### Login Icon #### -->
                         <li>
-                            <a asp-controller="Logins" asp-action="Index">
-                                <img src="~/images/original/login-icon_90x90.png" />
+                            <a asp-controller="Logins" asp-action="Index" id="loginIcon">
+                                <img src="~/images/original/login-icon_90x90.png" name="loginIcon" />
                             </a>
                         </li>
 
                         <!-- #### Search Box Icon #### -->
                         <li>
-                            <a asp-controller="Search" asp-action="SearchData" data-toggle="collapse">
-                                <img src="~/images/original/zoom-search-2-icon_90x90.png" />
+                            <a asp-controller="Search" asp-action="SearchData" data-toggle="collapse" id="searchIcon">
+                                <img src="~/images/original/zoom-search-2-icon_90x90.png" name="searchIcon" />
                             </a>
                         </li>
 
@@ -60,7 +77,6 @@
                         <li>
                             <a asp-controller="Pricing" asp-action="Index">Pricing</a>
                         </li>
-                        
                         <li>
                             <a asp-controller="Availabilities" asp-action="Index">Availability</a>
                         </li>
@@ -77,8 +93,12 @@
                     <div class="dropdown">
                         <button class="dropbtn">MORE</button>
                         <div class="dropdown-content">
+                            <!--
                             <a asp-controller="Timesheets" asp-action="Index">Timesheet</a>
-                            <a asp-controller="Employees" asp-action="Index">Employees</a>
+                            <a asp-controller="Employees" asp-action="AdminListOfEmployees">Employees</a>
+                            -->
+                            <a onclick="openTimesheetsDetails();">Timesheet</a>
+                            <a onclick="openEmployeesDetails();">Employees</a>
                         </div>
                     </div>
                 </div>

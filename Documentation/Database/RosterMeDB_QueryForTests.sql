@@ -95,7 +95,6 @@ Values (2, 6, CURRENT_TIMESTAMP);
 */
 
 /* ---------- Alter Queries ---------- */
-DBCC CHECKIDENT(BookedShifts, RESEED, 0)
 
 
 /* ---------- Delete Queries ---------- */
@@ -108,9 +107,5 @@ Where EmployeeId = 7;
 */
 
 /* ---------- Select Queries ---------- */
-/*
-Select EmployeeId, Count(InvitationId) As invitationCount From dbo.ShiftInvitation
-Group By InvitationId, EmployeeId;
-*/
-Select LoginId, Sum(LoginTrailId) As loginTrailCount From dbo.LoginTrail
-Group By LogInId, LoginTrailId;
+Select emp.FirstName, emp. LastName, dep.DeptName From dbo.Employees emp, dbo.Department dep Where EmployeeId = 10;
+Select * From dbo.Timesheets;

@@ -39,20 +39,20 @@
 <partial name="~/Views/PartialViews/_UserProfileLayout.cshtml" />
 
 <!-- #### Separator ##### -->
-<hr />
-<hr style="border: 1px solid black;" />
+<!-- <hr style="border: 1px solid black;" /> -->
 
 <!-- #### Section: Admin Data ##### -->
 <section class="section-padding">
     <div class="container">
         <div id="row">
             <!-- #### Section: Logged In Employees ##### -->
-            <div id="column" style="margin: 3px 0px 3px 0px;">
+            <div id="column" style="margin: 8px 15px 8px 15px; float: left;">
                 <h2 class="">
-                    Today's Logged In Employees
+                    Logged In Employees
                 </h2>
                 <hr />
-                <table class="adminEmployeesDataTable">
+                <table class="adminEmployeesDataTable"
+                       style="padding: 8px 15px 8px 15px; width: 350px;">
                     <thead class="">
                         <tr>
                             <th>
@@ -67,12 +67,12 @@
                         @foreach (var item in loggedInEmployees_List)
                         {
                             <tr>
-                                <td>
-                                    @item.LogIn.Employee.FirstName 
+                                <td style="padding: 3px 8px 3px 3px;">
+                                    @item.LogIn.Employee.FirstName
                                     @item.LogIn.Employee.LastName
                                 </td>
-                                <td>
-                                    @item.LogInTime.ToString("dd/MM/YYYY hh:mm")
+                                <td style="padding: 3px 8px 3px 3px;">
+                                    @item.LogInTime.ToString("dd/MM/YYYY hh:mm tt")
                                 </td>
                             </tr>
                         }
@@ -80,12 +80,13 @@
                 </table>
             </div>
             <!-- #### Section: Available & Confirmed Employee's Shifts ##### -->
-            <div id="column" style="margin: 3px 0px 3px 0px;">
-                <h2 class="">
-                    Available &amp; Confirmed Shifts
+            <div id="column" style="margin: 8px 15px 8px 15px; float: left;">
+                <h2>
+                    Availability &amp; Confirmed Shifts
                 </h2>
                 <hr />
-                <table class="adminEmployeesDataTable">
+                <table class="adminEmployeesDataTable" 
+                       style="padding: 8px 15px 8px 15px; width: 500px;">
                     <thead class="">
                         <tr>
                             <th>
@@ -95,7 +96,7 @@
                                 Date
                             </th>
                             <th>
-                                Status
+                                Shift
                             </th>
                         </tr>
                     </thead>
@@ -103,29 +104,32 @@
                         @foreach (var item in employeeAvailabilities_List)
                         {
                             <tr>
-                                <td>
-                                    @item.Employee.FirstName 
+                                <td style="padding: 3px 8px 3px 3px;">
+                                    @item.Employee.FirstName
                                     @item.Employee.LastName
                                 </td>
-                                <td>
-                                    @item.AvailableDate.Date
+                                <td style="padding: 3px 8px 3px 3px;">
+                                    @item.AvailableDate.Date.ToString("dd/MM/yyyy")
                                 </td>
-                                <td>
-                                    @item.AvailableFromTime -
-                                    @item.AvailableToTime
+                                <td style="padding: 3px 8px 3px 3px; width: 250px;">
+                                    @item.AvailableFromTime.ToString("hh:mm tt") -
+                                    @item.AvailableToTime.ToString("hh:mm tt")
                                 </td>
                             </tr>
                         }
                     </tbody>
                 </table>
             </div>
+        </div>
+
+        <div id="row">
             <!-- #### Section: Password Requests ##### -->
-            <div id="column" style="margin: 3px 0px 3px 0px;">
+            <div id="column" style="margin: 8px 15px 8px 15px;">
                 <h2 class="">
                     Password Requests
                 </h2>
                 <hr />
-                <table class="adminEmployeesDataTable">
+                <table class="adminEmployeesDataTable" style="padding: 8px 15px 8px 15px; width: 500px;">
                     <thead class="">
                         <tr>
                             <th>
@@ -143,14 +147,14 @@
                         @foreach (var item in passwordRequests_List)
                         {
                             <tr>
-                                <td>
-                                    @item.Login.Employee.FirstName 
+                                <td style="padding: 3px 8px 3px 3px;">
+                                    @item.Login.Employee.FirstName
                                     @item.Login.Employee.LastName
                                 </td>
-                                <td>
-                                    @item.RequestDate.ToString("dd/MM/YYYY")
+                                <td style="padding: 3px 8px 3px 3px;">
+                                    @item.RequestDate.ToString("dd/MM/yyyy")
                                 </td>
-                                <td>
+                                <td style="padding: 3px 8px 3px 3px;">
                                     @item.NewPassword
                                 </td>
                             </tr>

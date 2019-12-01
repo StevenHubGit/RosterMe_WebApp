@@ -1,14 +1,11 @@
 ﻿@model RosterMe.Models.Entities.Timesheets
 
 @{
-    //Set Layout
-    Layout = "~Views/Shared/_TimesheetsLayout.cshtml";
-
-    //Set tab title
+    Layout = "~/Views/Shared/_TimesheetsLayout.cshtml";
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h1>Create</h1>
 
 <h4>Timesheets</h4>
 <hr />
@@ -45,7 +42,7 @@
                 <span asp-validation-for="ApprovalStatus" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>

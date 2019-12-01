@@ -50,11 +50,11 @@
 <section class="section-padding gray-bg">
     <div class="row">
         <!-- #### Section: Employees' Booked Shifts #### -->
-        <div id="column">
+        <div id="dashColumn" style="margin: 8px 15px 8px 15px;">
             <h2>
                 Confirmed Bookings
             </h2>
-            <table class="managerEmployeesDataTable">
+            <table class="managerEmployeesDataTable" style="padding: 8px 15px 8px 15px; width: 350px;">
                 <thead class="">
                     <tr>
                         <th>
@@ -69,12 +69,12 @@
                     @for(int i = 0; i < employeeBookedShifts.Count(); i++)
                     {
                         <tr>
-                            <td>
+                            <td style="padding: 3px 8px 3px 3px;">
                                 @employeeBookedShifts[i].Employee.FirstName 
                                 @employeeBookedShifts[i].Employee.LastName
                             </td>
-                            <td>
-                                @employeeBookedShifts[i].BookedTime
+                            <td style="padding: 3px 8px 3px 3px;">
+                                @employeeBookedShifts[i].BookedTime.ToString("dd/MM/yyyy hh:mm tt")
                             </td>
                         </tr>
                     }
@@ -82,12 +82,13 @@
             </table>
         </div>
         <!-- #### Section: Employees' Availabilities #### -->
-        <div id="column">
+        <div id="dashColumn" style="margin: 8px 15px 8px 15px;">
             <h2>
                 Week's Availabilities
             </h2>
             <form>
-                <table class="managerEmployeesDataTable" id="employeeInvitation">
+                <table class="managerEmployeesDataTable" id="employeeInvitation" 
+                       style="padding: 8px 15px 8px 15px; width: 500px;">
                     <thead class="">
                         <tr>
                             <th>
@@ -108,17 +109,17 @@
                         @for (int i = 0; i < employeeAvailabilities.Count(); i++)
                         {
                             <tr>
-                                <td>
+                                <td style="padding: 3px 8px 3px 3px;">
                                     @employeeAvailabilities[i].Employee.FirstName 
                                     @employeeAvailabilities[i].Employee.LastName
                                 </td>
-                                <td>
-                                    <input type="time" name="EmployeeInviteDate"/>
+                                <td style="padding: 3px 8px 3px 3px;">
+                                    <input type="date" name="EmployeeInviteDate" placeholder="09:30"/>
                                 </td>
-                                <td>
-                                    @employeeAvailabilities[i].AvailableDate
+                                <td style="padding: 3px 8px 3px 3px;">
+                                    @employeeAvailabilities[i].AvailableDate.ToString("dd/MM/yyyy")
                                 </td>
-                                <td>
+                                <td style="padding: 3px 8px 3px 3px;">
                                     <input type="button" name="InviteEmployeeButton"
                                            value="Invite"
                                            class="inviteEmployee"

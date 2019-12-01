@@ -1,0 +1,70 @@
+﻿
+@{
+    //Set Layout
+    Layout = "~/Views/Shared/_ContactUsLayout.cshtml";
+
+    //Set tab title
+    ViewData["Title"] = "Contact Us";
+}
+
+<!-- Contact-Area -->
+<head>
+   <link href="~/css/original/ContactUsStyle.css" rel="stylesheet" />
+</head>
+<div class="row row-eq-height">
+    <div class="col-sm-6">
+        <div class="contact_details">
+            <h3>Contact Us</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Phone:</td>
+                        <td>+1234567890</td>
+                    </tr>
+                    <tr>
+                        <td>Address:</td>
+                        <td>Auckland,New Zealand</td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td>ghjj@abc.gh</td>
+                    </tr>
+                </tbody>
+            </table>                        
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="contact_form">
+            <div class="overlay_icon">
+                <img src="paper-plane.svg">
+            </div>
+            <h3>Get in Touch</h3>
+            <form action="">
+                <input type="text" class="height50" placeholder="Enter Name" id="name" name="name">
+                <input type="Email" class="height50" placeholder="Enter Email" id="email" name="email">
+                <textarea class="height150" placeholder="Enter Comment" id="textarea" name="textarea"></textarea>
+                <button type="submit" onclick="SendEmail()" class="btn btn-default">Submit</button>                            
+            </form>
+        </div>
+    </div>
+</div>        
+<!-- End: Contact-Area -->
+<script type="text/javascript">
+    function SendEmail() {
+        var email = $("#email").val();
+        var name = $("#name").val();
+        var message = $("#textarea").val();
+        $.ajax({
+            url: "/Home/SendEmailFromContactUs/",
+            type: "POST",
+            data: {
+                name: name,
+                message: message,
+                email: email
+            },
+            success:function() {
+                alert("Successfully!!!!");
+            }
+        });
+    }
+</script>

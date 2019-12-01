@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20191015225726_AddingLoginEntity.cs" />
+    <Compile Remove="Migrations\20191015225726_AddingLoginEntity.Designer.cs" />
+    <Compile Remove="Migrations\20191015235352_AddingLoginTrailEntity.cs" />
+    <Compile Remove="Migrations\20191015235352_AddingLoginTrailEntity.Designer.cs" />
+    <Compile Remove="Migrations\20191016000823_AddingLoginTrailEntity.cs" />
+    <Compile Remove="Migrations\20191016000823_AddingLoginTrailEntity.Designer.cs" />
+    <Compile Remove="Migrations\20191016001456_AddingLoginTrailEntity.cs" />
+    <Compile Remove="Migrations\20191016001456_AddingLoginTrailEntity.Designer.cs" />
+    <Compile Remove="Migrations\20191017020731_LoginAndLoginTrailsAdded.cs" />
+    <Compile Remove="Migrations\20191017020731_LoginAndLoginTrailsAdded.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+
+</Project>
